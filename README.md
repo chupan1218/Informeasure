@@ -12,19 +12,45 @@ install_github("chupan1218/Informeasure")
 # load the package
 library(Informeasure)
 
-# input the dataset
+# load the toy test dataset 
 load(system.file("extdata/tcga.brca.testdata.Rdata", package="Informeasure"))
-mRNAexpression <- log2(mRNAexpression + 1)
+lncRNAexpression <- log2(lncRNAexpression + 1)
+miRNAexpression  <- log2(miRNAexpression  + 1)
+mRNAexpression   <- log2(mRNAexpression   + 1)
 
-x <- as.numeric( mRNAexpression[which(rownames(mRNAexpression)=="BRCA1"), ] )
-y <- as.numeric( mRNAexpression[which(rownames(mRNAexpression)=="BARD1"), ] )
+x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-26a-5p"), ])
+y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression) == "PTEN"), ])
+z <- as.numeric(lncRNAexpression[which(rownames(lncRNAexpression) == "PTENP1"), ])
 
-# disc
-XY <- discretize2d(x,y, model = "uniform_width")
+##--- two discretization models are available: "uniform_width" and "uniform_frequency" ---##
+##-- three types of probability estimators are available: "ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink" ---##
 
-MI.measure(XY)
+# mutual information
+YZ <- discretize2d(y,z, model = "uniform_width")
 
-# 
+MI.measure(YZ, method = "ML", unit = "log")
+
+# conditional mutual information
+XYZ <- discretize3d(x, y, z, model = c("uniform_frequency"))
+
+CMI.measure(XYZ, method = "Jeffreys", unit = "log2")
+
+# Interaction information
+XYZ <- discretize3d(x, y, z, model = c("uniform_width"))
+
+CMI.measure(XYZ, method = "Laplace", unit = "log10")
+
+# partial information decomposition
+XYZ <- discretize3d(x, y, z, model = c("uniform_frequency"))
+
+CMI.measure(XYZ, method = "SG", unit = "log")
+
+# part mutual information
+XYZ <- discretize3d(x, y, z, model = c("uniform_width"))
+PMI.unittesting <- PMI.measure(XYZ, method = "minimax",  unit = "log2")
+
+XYZ <- discretize3d(x, y, z, model = c("uniform_frequency"))
+PMI.unittesting.<- PMI.measure(XYZ, method = "shrink",   unit = "log10")
 
 ```
 
