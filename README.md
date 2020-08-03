@@ -1,5 +1,5 @@
 # Informeasure
-This package compiles most information measures currently available: mutual information, condi-tional mutual information, interaction information, partial information decomposition and part mu-tual information. In detail the first estimator is used to infer bivariate network while the estimation of the last four are dedicated to the identification of trivariate network. The base installation of this package allows users to approach these information measures out of the box.
+This package compiles most information measures currently available: mutual information, conditional mutual information, interaction information, partial information decomposition and part mutual information. In detail the first estimator is used to infer bivariate network while the estimation of the last four are dedicated to the identification of trivariate network. The base installation of this package allows users to approach these information measures out of the box.
 
 # Prerequisites and Installation
 ```{r echo=FALSE, results='hide', message=FALSE}
@@ -34,5 +34,5 @@ This project is licensed under the GPL license.
 # Citation
 Please cite the following paper if you use Informeasure in your research.
 
-__*C Pan*__, YZ He, F Yang, XX Zeng and ZZ Zhang. Informeasure: a tool to quantify the dependence between variables in biological regulatory network from an information theory perspective. **_Bio_** 2020, xx(x):x-x.
+__*C Pan*__, YZ He, F Yang, XX Zeng* and ZL Zhang*. Informeasure: a tool to quantify the dependence between variables in biological regulatory network from an information theory perspective. **_Bio_** 2020, xx(x):x-x.
 
