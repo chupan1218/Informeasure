@@ -1,0 +1,154 @@
+---
+title: "Informeasure: a tool to quantify the dependence between variables in biological regulatory networks from an information theory perspective"
+#output: rmarkdown::html_vignette
+author: //\\ Chu PAN //\\ College of Computer Science and Electronic Engineering, Hunan University
+date: '`r Sys.Date()`'
+output:
+    BiocStyle::html_document:
+      toc: true
+    BiocStyle::pdf_document:
+      toc: true
+vignette: >
+  %\VignetteIndexEntry{Informeasure: a tool to quantify the dependence between variables in biological regulatory networks from an information theory perspective}
+  %\VignettePackage{Informeasure} 
+  %\VignetteEngine{knitr::rmarkdown}
+  % \usepackage[utf8]{inputenc} 
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+Accurately quantifying the dependencies between variables is the basis for inferring regulatory networks, but it is computationally challenging because there is currently no comprehensive tool available. We describe an information theory R package named Informeasure to quantify non-linear association between variables in the inference of regulatory networks, especially multivariate regulatory networks. This package compiles most information measures currently available: mutual information, conditional mutual information[1], interaction information[2], partial information decomposition[3] and part mutual information[4]. In detail the first estimator is used to infer bivariate network while the estimation of the last four are dedicated to the identification of trivariate network.
+
+# Main functions demonstration
+Informeasure implements five information measures. In the implementation process, each information measure has two discretization mehtods and three types of probability estimators to choose from. Specifically, tow discretization methods are uniform width-based method (default) that divides the continuous data into N count bins with equal width and uniform frequency-based approach that determines the continuous data into N count bins with equal count number. Note that the number of bins in these two methods is initialized into a round-off value based on the square root of the data size. Three types of probability estimators referenced to the entropy package[5] that include the empirical estimator (default), the Dirichlet distribution estimator and the shrinkage estimator, While the Dirichlet distribution estimator also includes four different distribution with different prior values. These different probability estimators are showed in detail below. 
+
+method = "ML": empirical estimator, also referred to maximum likelihood estimator, 
+
+method = "Jeffreys": Dirichlet distribution estimator with prior a = 0.5, 
+
+method = "Laplace": Dirichlet distribution estimator with prior a = 1, 
+
+method = "SG": Dirichlet distribution estimator with prior a = 1/length(count table), 
+
+method = "minimax": Dirichlet distribution estimator with prior a = sqrt(sum(count table))/length(count table), 
+
+method = "shrink": shrinkage estimator.
+
+## MI.measure(): mutual information
+In the case of two variables, the representative method is mutual information, used to measure the mutual dependence between two joint variables.
+```{r}
+library(Informeasure)
+
+load(system.file("extdata/tcga.brca.testdata.Rdata", package="Informeasure"))
+mRNAexpression <- log2(mRNAexpression + 1)
+
+x <- as.numeric( mRNAexpression[which(rownames(mRNAexpression)=="BRCA1"), ] )
+y <- as.numeric( mRNAexpression[which(rownames(mRNAexpression)=="BARD1"), ] )
+
+XY <- discretize2d(x,y, model = "uniform_width")
+
+MI.measure(XY)
+```
+
+## CMI.measure(): conditional mutual informaiton 
+In the three-variable case, the most classic method is conditional mutual information. It is widely used to evaluate the expected mutual information between two random variables conditioned on the third one.
+```{r}
+library(Informeasure)
+
+load(system.file("extdata/tcga.brca.testdata.Rdata", package="Informeasure"))
+lncRNAexpression <- log2(lncRNAexpression + 1)
+miRNAexpression  <- log2(miRNAexpression  + 1)
+mRNAexpression   <- log2(mRNAexpression   + 1)
+
+x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-26a-5p"), ])
+y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression) == "PTEN"), ])
+z <- as.numeric(lncRNAexpression[which(rownames(lncRNAexpression) == "PTENP1"), ])
+
+XYZ <- discretize3d(x,y,z, model = "uniform_width")
+
+CMI.measure(XYZ)
+```
+
+## II.measure(): interaction information
+Interaction information, also known as co-information, measures the amount information contained in a set of variables beyond any subset of those variables. The number of variables here is limited to three.
+```{r}
+library(Informeasure)
+
+load(system.file("extdata/tcga.brca.testdata.Rdata", package="Informeasure"))
+
+miRNAexpression  <- log2(miRNAexpression  + 1)
+mRNAexpression   <- log2(mRNAexpression   + 1)
+
+x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-34a-5p"), ])
+y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression) == "MYC"), ])
+z <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-34b-5p"), ])
+
+XYZ <- discretize3d(x,y,z, model = "uniform_width")
+
+II.measure(XYZ)
+```
+## PID.measure(): Partial information decomposition
+Partial information decomposition decomposes two source information acting on the common target into four information parts: joint information (synergy), unique information from x, unique information from y and shared information (redundancy). 
+```{r}
+library(Informeasure)
+
+load(system.file("extdata/tcga.brca.testdata.Rdata", package="Informeasure"))
+
+miRNAexpression  <- log2(miRNAexpression  + 1)
+mRNAexpression   <- log2(mRNAexpression   + 1)
+
+x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-34a-5p"), ])
+y <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-34b-5p"), ])
+z <- as.numeric(mRNAexpression[which(rownames(mRNAexpression) == "MYC"), ])
+
+XYZ <- discretize3d(x,y,z, model = "uniform_width")
+
+PID.measure(XYZ)
+```
+## PMI.measure(): Part mutual information 
+Part mutual information devotes to measuring the non-linearly direct dependencies between two random variables given a third, especially when any one variable has a potentially strong correlation with the third one. 
+```{r}
+library(Informeasure)
+
+load(system.file("extdata/tcga.brca.testdata.Rdata", package="Informeasure"))
+
+lncRNAexpression <- log2(lncRNAexpression + 1)
+miRNAexpression  <- log2(miRNAexpression  + 1)
+mRNAexpression   <- log2(mRNAexpression   + 1)
+
+x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression)   == "hsa-miR-26a-5p"), ])
+y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression)     == "PTEN"), ])
+z <- as.numeric(lncRNAexpression[which(rownames(lncRNAexpression) == "PTENP1"), ])
+
+XYZ <- discretize3d(x,y,z, model = "uniform_width")
+
+PMI.measure(XYZ)
+```
+
+# Conclusions
+We provided the implementation of most information measures in this R package. The base installation of this package allows users to approach most information measures to infer bivariate even multivariate regulatory network. Please note that the provided package is not only limited to bioinformatics applications. Optionally other research fields can also employ this package to generally evaluate information relations between variables.
+
+# References
+[1] Wyner A D. A definition of conditional mutual information for arbitrary ensembles[J]. Information & Computation, 1978, 38(1): 51-59.
+
+[2] Mcgill W J. Multivariate information transmission[J]. Psychometrika, 1954, 19(2): 97-116. 
+
+[3] Williams P L, Beer R D. Nonnegative Decomposition of Multivariate Information[J]. arXiv: Information Theory, 2010.
+
+[4] Zhao J, Zhou Y, Zhang X, et al. Part mutual information for quantifying direct associations in networks[J]. Proceedings of the National Academy of Sciences of the United States of America, 2016, 113(18): 5130-5135.
+
+[5] Hausser J. and Strimmer K. Entropy inference and the James-Stein estimator, with application to nonlinear gene association networks[J]. The Journal of Machine Learning Research, 2009, 10, 1469-1484.
+
+
+
+# Session information
+```{r}
+sessionInfo()
+```
