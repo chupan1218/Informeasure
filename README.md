@@ -73,5 +73,5 @@ This project is licensed under the GPL license.
 # Citation
 Please cite the following paper if you use Informeasure in your research.
 
-__*C Pan*__, YZ He, F Yang, XX Zeng* and ZL Zhang*. Informeasure: a tool to quantify the dependence between variables in biological regulatory network from an information theory perspective. **_Bio_** 2020, xx(x):x-x.
+__*C Pan*__, YZ He, F Yang, XX Zeng* and ZL Zhang*. Informeasure: a tool to quantify the dependence between variables in biological regulatory network from an information theory perspective. **_Bio_**, 2020, xx(x):x-x.
 
