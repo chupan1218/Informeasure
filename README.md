@@ -59,7 +59,7 @@ PMI.measure(XYZ, method = "shrink",   unit = "log10")
 # License
 This project is licensed under the GPL license.
 
-# __*References*__
+# References
 [1] Wyner A D. A definition of conditional mutual information for arbitrary ensembles[J]. Information & Computation, 1978, 38(1): 51-59.
 
 [2] Mcgill W J. Multivariate information transmission[J]. Psychometrika, 1954, 19(2): 97-116. 
