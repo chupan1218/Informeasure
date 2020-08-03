@@ -7,7 +7,7 @@ library(devtools)
 install_github("chupan1218/Informeasure")
 ```
 
-# A simple start-up guide for using main functions of [Informeasure]
+# A simple start-up guide for using main functions of Informeasure
 ```{r echo=FALSE, results='hide', message=FALSE}
 # load the package
 library(Informeasure)
