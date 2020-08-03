@@ -43,7 +43,7 @@ II.measure(XYZ, method = "Laplace", unit = "log10")
 # partial information decomposition
 XYZ <- discretize3d(x, y, z, model = c("uniform_frequency"))
 
-CMI.measure(XYZ, method = "SG", unit = "log")
+PID.measure(XYZ, method = "SG", unit = "log")
 
 # part mutual information
 XYZ <- discretize3d(x, y, z, model = c("uniform_width"))
