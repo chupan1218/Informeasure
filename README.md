@@ -23,7 +23,7 @@ y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression) == "PTEN"), ])
 z <- as.numeric(lncRNAexpression[which(rownames(lncRNAexpression) == "PTENP1"), ])
 
 ##--- two discretization models are available: "uniform_width" and "uniform_frequency" ---##
-##-- three types of probability estimators are available: "ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink" ---##
+##--- six probability estimators referened to entropy package are available: "ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink" ---##
 
 # mutual information
 YZ <- discretize2d(y,z, model = "uniform_width")
@@ -38,7 +38,7 @@ CMI.measure(XYZ, method = "Jeffreys", unit = "log2")
 # Interaction information
 XYZ <- discretize3d(x, y, z, model = c("uniform_width"))
 
-CMI.measure(XYZ, method = "Laplace", unit = "log10")
+II.measure(XYZ, method = "Laplace", unit = "log10")
 
 # partial information decomposition
 XYZ <- discretize3d(x, y, z, model = c("uniform_frequency"))
@@ -47,10 +47,12 @@ CMI.measure(XYZ, method = "SG", unit = "log")
 
 # part mutual information
 XYZ <- discretize3d(x, y, z, model = c("uniform_width"))
-PMI.unittesting <- PMI.measure(XYZ, method = "minimax",  unit = "log2")
+
+PMI.measure(XYZ, method = "minimax",  unit = "log2")
 
 XYZ <- discretize3d(x, y, z, model = c("uniform_frequency"))
-PMI.unittesting.<- PMI.measure(XYZ, method = "shrink",   unit = "log10")
+
+PMI.measure(XYZ, method = "shrink",   unit = "log10")
 
 ```
 
