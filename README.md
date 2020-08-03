@@ -3,6 +3,7 @@ This package compiles most information measures currently available: mutual info
 
 # Prerequisites and Installation
 ```{r echo=FALSE, results='hide', message=FALSE}
+Depends: R (>= 3.5.0)
 library(devtools)
 install_github("chupan1218/Informeasure")
 ```
