@@ -1,5 +1,5 @@
 # Informeasure
-This package compiles most information measures currently available: mutual information, conditional mutual information, interaction information, partial information decomposition and part mutual information. In detail the first estimator is used to infer bivariate network while the estimation of the last four are dedicated to the identification of trivariate network. The base installation of this package allows users to approach these information measures out of the box.
+This package compiles most information measures currently available: mutual information, conditional mutual information[1], interaction information[2], partial information decomposition[3] and part mutual information[4]. In detail the first estimator is used to infer bivariate network while the estimation of the last four are dedicated to the identification of trivariate network. The base installation of this package allows users to approach these information measures out of the box.
 
 # Prerequisites and Installation
 ```{r echo=FALSE, results='hide', message=FALSE}
@@ -23,7 +23,7 @@ y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression) == "PTEN"), ])
 z <- as.numeric(lncRNAexpression[which(rownames(lncRNAexpression) == "PTENP1"), ])
 
 ##--- two discretization models are available: "uniform_width" and "uniform_frequency" ---##
-##--- six probability estimators referened to entropy package are available: "ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink" ---##
+##--- six probability estimators referred to entropy package[5] are available: "ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink" ---##
 
 # mutual information
 YZ <- discretize2d(y,z, model = "uniform_width")
@@ -58,6 +58,17 @@ PMI.measure(XYZ, method = "shrink",   unit = "log10")
 
 # License
 This project is licensed under the GPL license.
+
+# References
+[1] Wyner A D. A definition of conditional mutual information for arbitrary ensembles[J]. Information & Computation, 1978, 38(1): 51-59.
+
+[2] Mcgill W J. Multivariate information transmission[J]. Psychometrika, 1954, 19(2): 97-116. 
+
+[3] Williams P L, Beer R D. Nonnegative Decomposition of Multivariate Information[J]. arXiv: Information Theory, 2010.
+
+[4] Zhao J, Zhou Y, Zhang X, et al. Part mutual information for quantifying direct associations in networks[J]. Proceedings of the National Academy of Sciences of the United States of America, 2016, 113(18): 5130-5135.
+
+[5] Hausser J. and Strimmer K. Entropy inference and the James-Stein estimator, with application to nonlinear gene association networks[J]. The Journal of Machine Learning Research, 2009, 10, 1469-1484.
 
 # Citation
 Please cite the following paper if you use Informeasure in your research.
