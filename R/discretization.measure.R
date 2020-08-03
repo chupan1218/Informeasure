@@ -28,6 +28,8 @@
 #' discretize1d(x, "uniform_frequency")
 discretize1d = function(x, model = c("uniform_width", "uniform_frequency")){
 
+  model = match.arg(model)
+
   if(model == "uniform_width")
     return(discretize1d.uniform_width(x))
 
@@ -67,6 +69,8 @@ discretize1d = function(x, model = c("uniform_width", "uniform_frequency")){
 #' # corresponding count table estimated by "uniform frequency" algorithm
 #' discretize2d(x,y, "uniform_frequency")
 discretize2d = function(x, y, model = c("uniform_width", "uniform_frequency")){
+
+  model = match.arg(model)
 
   if(model == "uniform_width")
     return(discretize2d.uniform_width(x,y))
@@ -110,6 +114,8 @@ discretize2d = function(x, y, model = c("uniform_width", "uniform_frequency")){
 #' # corresponding count table estimated by "uniform frequency" algorithm
 #' discretize3d(x,y,z, "uniform_frequency")
 discretize3d = function(x, y, z, model = c("uniform_width", "uniform_frequency")){
+
+  model = match.arg(model)
 
   if(model == "uniform_width")
     return(discretize3d.uniform_width(x,y,z))
