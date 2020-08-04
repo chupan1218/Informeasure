@@ -37,7 +37,7 @@ XYZ <- discretize3d(x, y, z, model = c("uniform_frequency"))
 
 CMI.measure(XYZ, method = "Jeffreys", unit = "log2")
 
-# Interaction information
+# interaction information
 XYZ <- discretize3d(x, y, z, model = c("uniform_width"))
 
 II.measure(XYZ, method = "Laplace", unit = "log10")
