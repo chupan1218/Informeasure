@@ -2,14 +2,19 @@ Package: Informeasure
 Type: Package
 Title: R implementation of Information measures
 Version: 0.99.0
+Date: 2020-08-01
 Author: Chu PAN
 Maintainer: Chu PAN <chu.pan@hnu.edu.cn>
 Description: This package compiles most information measures currently available: mutual information, conditional mutual information, interaction information, 
-partial information decomposition and part mutual information. The first estimator is used to infer bivariate network while the estimation of the last four are 
-dedicated to the identification of trivariate network. 
-License: GPL
+    partial information decomposition and part mutual information. Using gene expression profile data, all these estimators can be employed to quantify the nonlinear 
+    dependence between variables in biological regulatory network inference. In detail the first estimator is used to infer bivariate network while the estimation of 
+    the last four are dedicated to the identification of trivariate network. 
+Depends: R (>= 3.5.0)
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+biocViews: GeneExpression, NetworkInference
+NeedsCompilation: no
 RoxygenNote: 7.1.0
 Imports: entropy
 Suggests: 
