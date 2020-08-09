@@ -1,10 +1,12 @@
 Package: Informeasure
 Type: Package
 Title: R implementation of Information measures
-Version: 0.1.0
+Version: 0.99.0
 Author: Chu PAN
 Maintainer: Chu PAN <chu.pan@hnu.edu.cn>
-Description: This package compiles most information measures currently available: mutual information, conditional mutual information, interaction information, partial information decomposition and part mutual information.
+Description: This package compiles most information measures currently available: mutual information, conditional mutual information, interaction information, 
+partial information decomposition and part mutual information. The first estimator is used to infer bivariate network while the estimation of the last four are 
+dedicated to the identification of trivariate network. 
 License: GPL
 Encoding: UTF-8
 LazyData: true
