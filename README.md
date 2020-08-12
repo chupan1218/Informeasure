@@ -69,4 +69,3 @@ This project is licensed under the GPL license.
 [4] Zhao J, Zhou Y, Zhang X, et al. Part mutual information for quantifying direct associations in networks[J]. Proceedings of the National Academy of Sciences of the United States of America, 2016, 113(18): 5130-5135.
 
 [5] Hausser J. and Strimmer K. Entropy inference and the James-Stein estimator, with application to nonlinear gene association networks[J]. The Journal of Machine Learning Research, 2009, 10, 1469-1484.
-
