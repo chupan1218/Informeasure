@@ -70,8 +70,3 @@ This project is licensed under the GPL license.
 
 [5] Hausser J. and Strimmer K. Entropy inference and the James-Stein estimator, with application to nonlinear gene association networks[J]. The Journal of Machine Learning Research, 2009, 10, 1469-1484.
 
-# Citation
-Please cite the following paper if you use Informeasure in your research.
-
-__*Pan C*__, He Y, Yang F and Zeng X*. Informeasure: a tool to quantify the dependence between variables in biological regulatory network from an information theory perspective. **_Bio_**, 2020, xx(x):x-x.
-
