@@ -339,7 +339,7 @@ PMI.plugin = function(probs, unit = c("log", "log2", "log10")){
   if (unit == "log10")  tmp = log(p_xy_z/p_x_z_y_z, 10) # change from log to log10 scale
   tmp[is.infinite(tmp)] = 0
 
-  PMI = sum(p_xyz * tmp, na.rm = T)
+  PMI = sum(p_xyz * tmp, na.rm = TRUE)
 
   return(PMI)
 }
