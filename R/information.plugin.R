@@ -7,6 +7,8 @@
 #'
 #' @return MI.plugin returns the mutual information.
 #' @export
+#' @import entropy
+#' @importFrom entropy entropy.plugin
 #'
 #' @examples
 #' # load Informeasure library
@@ -28,9 +30,9 @@ MI.plugin = function(probs, unit = c("log", "log2", "log10")){
 
   unit = match.arg(unit)
 
-  MI = entropy::entropy.plugin(rowSums(probs),  unit = unit) +
-       entropy::entropy.plugin(colSums(probs),  unit = unit) -
-       entropy::entropy.plugin(probs,           unit = unit)
+  MI = entropy.plugin(rowSums(probs),  unit = unit) +
+       entropy.plugin(colSums(probs),  unit = unit) -
+       entropy.plugin(probs,           unit = unit)
 
   #probs.x = rowSums(probs) # marginal probability
   #probs.y = colSums(probs)
@@ -52,6 +54,8 @@ MI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #'
 #' @return CMI.plugin returns the conditional mutual information.
 #' @export
+#' @import entropy
+#' @importFrom entropy entropy.plugin
 #'
 #' @references
 #'
@@ -84,10 +88,10 @@ CMI.plugin = function(probs, unit = c("log", "log2", "log10")){
   p_XZ  = apply(probs, c(1,3), sum)
   p_YZ  = colSums(probs, dims = 1L)
 
-  CMI = entropy::entropy.plugin(p_XZ,  unit = unit) +
-        entropy::entropy.plugin(p_YZ,  unit = unit) -
-        entropy::entropy.plugin(p_XYZ, unit = unit) -
-        entropy::entropy.plugin(p_Z,   unit = unit)
+  CMI = entropy.plugin(p_XZ,  unit = unit) +
+        entropy.plugin(p_YZ,  unit = unit) -
+        entropy.plugin(p_XYZ, unit = unit) -
+        entropy.plugin(p_Z,   unit = unit)
 
   return(CMI)
 }

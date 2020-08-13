@@ -18,6 +18,8 @@
 #'
 #' @return MI.measure returns the mutual information.
 #' @export
+#' @import entropy
+#' @importFrom entropy freqs.empirical freqs.Dirichlet freqs.shrink
 #'
 #' @references
 #'
@@ -47,32 +49,32 @@ MI.measure = function(XY, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax
     unit = match.arg(unit)
 
   if(method == "ML"){
-    probs = entropy::freqs.empirical(XY)
+    probs = freqs.empirical(XY)
     MI = MI.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = entropy::freqs.Dirichlet(XY, a = 1/2)
+    probs = freqs.Dirichlet(XY, a = 1/2)
     MI = MI.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = entropy::freqs.Dirichlet(XY, a = 1)
+    probs = freqs.Dirichlet(XY, a = 1)
     MI = MI.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = entropy::freqs.Dirichlet(XY, a = 1/length(XY))
+    probs = freqs.Dirichlet(XY, a = 1/length(XY))
     MI = MI.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = entropy::freqs.Dirichlet(XY, a = sqrt(sum(XY))/length(XY))
+    probs = freqs.Dirichlet(XY, a = sqrt(sum(XY))/length(XY))
     MI = MI.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = entropy::freqs.shrink(XY, lambda.freqs = lambda.probs, verbose = verbose)
+    probs = freqs.shrink(XY, lambda.freqs = lambda.probs, verbose = verbose)
     MI = MI.plugin(probs, unit)
   }
 
@@ -101,6 +103,8 @@ MI.measure = function(XY, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax
 #'
 #' @return CMI.measure returns the conditional mutual information.
 #' @export
+#' @import entropy
+#' @importFrom entropy freqs.empirical freqs.Dirichlet freqs.shrink
 #'
 #' @references
 #'
@@ -129,32 +133,32 @@ CMI.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
     unit = match.arg(unit)
 
   if(method == "ML"){
-    probs =  entropy::freqs.empirical(XYZ)
+    probs = freqs.empirical(XYZ)
     CMI = CMI.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = 1/2)
+    probs = freqs.Dirichlet(XYZ, a = 1/2)
     CMI = CMI.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = 1)
+    probs = freqs.Dirichlet(XYZ, a = 1)
     CMI = CMI.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = length(XYZ))
+    probs = freqs.Dirichlet(XYZ, a = length(XYZ))
     CMI = CMI.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = sqrt(sum(XYZ))/length(XYZ))
+    probs = freqs.Dirichlet(XYZ, a = sqrt(sum(XYZ))/length(XYZ))
     CMI = CMI.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = entropy::freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
+    probs = freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
     CMI = CMI.plugin(probs, unit)
   }
 
@@ -183,6 +187,8 @@ CMI.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #'
 #' @return II.measure returns the interaction information.
 #' @export
+#' @import entropy
+#' @importFrom entropy freqs.empirical freqs.Dirichlet freqs.shrink
 #'
 #' @references
 #'
@@ -213,32 +219,32 @@ II.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minima
     unit = match.arg(unit)
 
   if(method == "ML"){
-    probs = entropy::freqs.empirical(XYZ)
+    probs = freqs.empirical(XYZ)
     II = II.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = 1/2)
+    probs = freqs.Dirichlet(XYZ, a = 1/2)
     II = II.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = 1)
+    probs = freqs.Dirichlet(XYZ, a = 1)
     II = II.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = length(XYZ))
+    probs = freqs.Dirichlet(XYZ, a = length(XYZ))
     II = II.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = sqrt(sum(XYZ))/length(XYZ))
+    probs = freqs.Dirichlet(XYZ, a = sqrt(sum(XYZ))/length(XYZ))
     II = II.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = entropy::freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
+    probs = freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
     II = II.plugin(probs, unit)
   }
 
@@ -269,6 +275,8 @@ II.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minima
 #' @return PID.measure returns a list, including synergistic information, unique information from x, unique information from y,
 #' redundant information and the sum of the four parts of information.
 #' @export
+#' @import entropy
+#' @importFrom entropy freqs.empirical freqs.Dirichlet freqs.shrink
 #'
 #' @references
 #' Hausser, J., & Strimmer, K. (2009). Entropy Inference and the James-Stein Estimator, with Application to Nonlinear Gene Association Networks.
@@ -317,32 +325,32 @@ PID.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
     unit = match.arg(unit)
 
   if(method == "ML"){
-    probs = entropy::freqs.empirical(XYZ)
+    probs = freqs.empirical(XYZ)
     PID = PID.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = 1/2)
+    probs = freqs.Dirichlet(XYZ, a = 1/2)
     PID = PID.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = 1)
+    probs = freqs.Dirichlet(XYZ, a = 1)
     PID = PID.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = length(XYZ))
+    probs = freqs.Dirichlet(XYZ, a = length(XYZ))
     PID = PID.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = entropy::freqs.Dirichlet(XYZ, sqrt(sum(XYZ))/length(XYZ))
+    probs = freqs.Dirichlet(XYZ, sqrt(sum(XYZ))/length(XYZ))
     PID = PID.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = entropy::freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
+    probs = freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
     PID = PID.plugin(probs, unit)
   }
 
@@ -372,6 +380,8 @@ PID.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #'
 #' @return PMI.measure returns the part mutual information.
 #' @export
+#' @import entropy
+#' @importFrom entropy freqs.empirical freqs.Dirichlet freqs.shrink
 #'
 #' @references
 #'
@@ -402,32 +412,32 @@ PMI.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
     unit = match.arg(unit)
 
   if(method == "ML"){
-    probs = entropy::freqs.empirical(XYZ)
+    probs = freqs.empirical(XYZ)
     PMI = PMI.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = 1/2)
+    probs = freqs.Dirichlet(XYZ, a = 1/2)
     PMI = PMI.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = 1)
+    probs = freqs.Dirichlet(XYZ, a = 1)
     PMI = PMI.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = entropy::freqs.Dirichlet(XYZ, a = length(XYZ))
+    probs = freqs.Dirichlet(XYZ, a = length(XYZ))
     PMI = PMI.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = entropy::freqs.Dirichlet(XYZ, sqrt(sum(XYZ))/length(XYZ))
+    probs = freqs.Dirichlet(XYZ, sqrt(sum(XYZ))/length(XYZ))
     PMI = PMI.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = entropy::freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
+    probs = freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
     PMI = PMI.plugin(probs, unit)
   }
 
