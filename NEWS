@@ -1,0 +1,14 @@
+Changes in version 0.99.1 (2018-08-13)
+-------------------------
+o Made the following significant changes
+  o Added Informeasure.Rproj into the .gitignore file
+  o Replaced Author/Maintainer with Authors@R in the DESCRIPTION file
+  o Added a NEWS file
+  o Added a .R file in tests/ directory
+  o Update R version dependency from 3.5.0 to 4.0
+  o Use TRUE/FALSE instead of T/F in PMI.plugin()
+
+
+Changes in version 0.99.0 (2018-08-09)
+-------------------------
+o Submitted to Bioconductor
