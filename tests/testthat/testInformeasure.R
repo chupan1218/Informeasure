@@ -1,5 +1,3 @@
-library(testthat)
-library(Informeasure)
 
 testthat::test_package("Informeasure")
 
