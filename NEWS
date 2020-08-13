@@ -1,3 +1,8 @@
+Changes in version 0.99.2 (2018-08-13)
+-------------------------
+o Fix the warning of unnecessary package calls
+
+
 Changes in version 0.99.1 (2018-08-13)
 -------------------------
 o Made the following significant changes
@@ -7,7 +12,6 @@ o Made the following significant changes
   o Added a .R file in tests/ directory
   o Update R version dependency from 3.5.0 to 4.0
   o Use TRUE/FALSE instead of T/F in PMI.plugin()
-  o Fix the warning of unnecessary package calls
 
 
 Changes in version 0.99.0 (2018-08-09)

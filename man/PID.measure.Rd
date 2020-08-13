@@ -25,7 +25,7 @@ For evaluating entropy in bits, it is suggested to set the unit to "log2".}
 \item{verbose}{a logic variable. if verbose is true, report the shrinkage intensity.}
 }
 \value{
-PID.measure returns a list, including synergistic information, unique information from x, unique information from y,
+PID.measure returns a list that includes synergistic information, unique information from x, unique information from y,
 redundant information and the sum of the four parts of information.
 }
 \description{

@@ -8,7 +8,7 @@
 #' @return MI.plugin returns the mutual information.
 #' @export
 #' @import entropy
-#' @importFrom entropy entropy.plugin
+#' @importFrom entropy entropy.plugin KL.plugin
 #'
 #' @examples
 #' # load Informeasure library

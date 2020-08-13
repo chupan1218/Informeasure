@@ -272,7 +272,7 @@ II.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minima
 #' For evaluating entropy in bits, it is suggested to set the unit to "log2".
 #' @param verbose a logic variable. if verbose is true, report the shrinkage intensity.
 #'
-#' @return PID.measure returns a list, including synergistic information, unique information from x, unique information from y,
+#' @return PID.measure returns a list that includes synergistic information, unique information from x, unique information from y,
 #' redundant information and the sum of the four parts of information.
 #' @export
 #' @import entropy
