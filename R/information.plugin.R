@@ -38,7 +38,7 @@ MI.plugin = function(probs, unit = c("log", "log2", "log10")){
   #probs.y = colSums(probs)
   #probs.null = probs.x %o% probs.y # independence null model
 
-  #MI = entropy::KL.plugin(probs, probs.null, unit = unit)
+  #MI = KL.plugin(probs, probs.null, unit = unit)
 
   return(MI)
 }
@@ -65,6 +65,7 @@ MI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #'
 #' # load Informeasure library
 #' library("Informeasure")
+#' library("entropy")
 #'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
@@ -75,7 +76,7 @@ MI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' count_xyz <- discretize3d(x, y, z, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
-#' probs_xyz <- entropy::freqs.empirical(count_xyz)
+#' probs_xyz <- freqs.empirical(count_xyz)
 #'
 #' # corresponding conditional mutual information
 #' CMI.plugin(probs_xyz)
@@ -115,6 +116,7 @@ CMI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #'
 #' # load Informeasure library
 #' library("Informeasure")
+#' library("entropy")
 #'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
@@ -125,7 +127,7 @@ CMI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' count_xyz <- discretize3d(x, y, z, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
-#' probs_xyz <- entropy::freqs.empirical(count_xyz)
+#' probs_xyz <- freqs.empirical(count_xyz)
 #'
 #' # corresponding interaction information
 #' II.plugin(probs_xyz)
@@ -166,7 +168,7 @@ II.plugin = function(probs, unit = c("log", "log2", "log10")){
 #'
 #' # load Informeasure library
 #' library("Informeasure")
-#'
+#' library("entropy")
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -176,7 +178,7 @@ II.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' count_xyz <- discretize3d(x, y, z, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
-#' probs_xyz <- entropy::freqs.empirical(count_xyz)
+#' probs_xyz <- freqs.empirical(count_xyz)
 #'
 #' # corresponding partial information decomposition
 #' PID.plugin(probs_xyz)
@@ -263,6 +265,7 @@ Redundancy = function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10"
 #'
 #' # load Informeasure library
 #' library("Informeasure")
+#' library("entropy")
 #'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
@@ -273,7 +276,7 @@ Redundancy = function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10"
 #' count_xyz <- discretize3d(x, y, z, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
-#' probs_xyz <- entropy::freqs.empirical(count_xyz)
+#' probs_xyz <- freqs.empirical(count_xyz)
 #'
 #' # corresponding part mutual information
 #' PMI.plugin(probs_xyz)

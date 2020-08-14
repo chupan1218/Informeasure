@@ -97,7 +97,6 @@ discretize2d = function(x, y, model = c("uniform_width", "uniform_frequency")){
 #' @return discretize3d returns a 3-dimensional count table.
 #' @export
 #'
-#'
 #' @examples
 #'
 #' # load Informeasure library
