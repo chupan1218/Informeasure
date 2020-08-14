@@ -13,6 +13,7 @@
 #' @examples
 #' # load Informeasure library
 #' library("Informeasure")
+#' library("entropy")
 #'
 #' # two numeric vectors corresponding to two continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
@@ -22,7 +23,7 @@
 #' count_xy <- discretize2d(x, y, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
-#' probs_xy <- entropy::freqs.empirical(count_xy)
+#' probs_xy <- freqs.empirical(count_xy)
 #'
 #' # corresponding mutual information
 #' MI.plugin(probs_xy)
