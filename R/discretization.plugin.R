@@ -11,7 +11,6 @@
 #' @export
 #'
 #' @examples
-#'
 #' # a numeric vector corresponding to a continuous random variable
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #'
@@ -43,7 +42,6 @@ discretize1d.uniform_width = function(x)
 #' @export
 #'
 #' @examples
-#'
 #' # two numeric vectors corresponding to two continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -82,7 +80,6 @@ discretize2d.uniform_width = function(x, y)
 #' @export
 #'
 #' @examples
-#'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -123,7 +120,6 @@ discretize3d.uniform_width = function(x, y, z)
 #' @export
 #'
 #' @examples
-#'
 #' # a numeric vector corresponding to a continuous random variable
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #'
@@ -151,7 +147,6 @@ discretize1d.uniform_frequency = function(x)
 #' @export
 #'
 #' @examples
-#'
 #' # two numeric vectors corresponding to two continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -181,7 +176,6 @@ discretize2d.uniform_frequency = function(x, y)
 #' @export
 #'
 #' @examples
-#'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)

@@ -23,7 +23,6 @@ Uniform width-based method ("uniform_width") divides the continuous data into N 
 The number of bins N is initialized into a round-off value according to the square root of the data size.
 }
 \examples{
-
 # two numeric vectors corresponding to two continuous random variables
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)

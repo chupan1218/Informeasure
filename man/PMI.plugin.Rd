@@ -20,7 +20,6 @@ PMI.plug measures the non-linearly direct dependencies between two variables con
 form the joint probability distribution table.
 }
 \examples{
-
 # three numeric vectors corresponding to three continuous random variables
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
