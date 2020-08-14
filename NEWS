@@ -1,3 +1,13 @@
+Changes in version 0.99.4 (2018-08-14)
+-------------------------
+o Fix the warning of unnecessary package calls
+
+
+Changes in version 0.99.3 (2018-08-14)
+-------------------------
+o Fix the warning of unnecessary package calls
+
+
 Changes in version 0.99.2 (2018-08-14)
 -------------------------
 o Fix the warning of unnecessary package calls

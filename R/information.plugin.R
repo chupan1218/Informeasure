@@ -56,7 +56,6 @@ MI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' @importFrom entropy entropy.plugin
 #'
 #' @references
-#'
 #' Wyner, A. D. (1978). A definition of conditional mutual information for arbitrary ensembles. Information & Computation, 38(1), 51-59.
 #'
 #' @examples
@@ -104,7 +103,6 @@ CMI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' @export
 #'
 #' @references
-#'
 #' Mcgill, W. J. (1954). Multivariate information transmission. Psychometrika, 19(2), 97-116.
 #' @examples
 #' # three numeric vectors corresponding to three continuous random variables
@@ -148,7 +146,6 @@ II.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' @export
 #'
 #' @references
-#'
 #' Williams, P. L., & Beer, R. D. (2010). Nonnegative Decomposition of Multivariate Information. arXiv: Information Theory.
 #'
 #' Chan, T. E., Stumpf, M. P., & Babtie, A. C. (2017). Gene Regulatory Network Inference from Single-Cell Data Using Multivariate Information Measures.
@@ -244,7 +241,6 @@ Redundancy = function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10"
 #' @export
 #'
 #' @references
-#'
 #' Zhao, J., Zhou, Y., Zhang, X., & Chen, L. (2016). Part mutual information for quantifying direct associations in networks.
 #' Proceedings of the National Academy of Sciences of the United States of America, 113(18), 5130-5135.
 #'

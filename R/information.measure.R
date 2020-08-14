@@ -22,7 +22,6 @@
 #' @importFrom entropy freqs.empirical freqs.Dirichlet freqs.shrink
 #'
 #' @references
-#'
 #' Hausser, J., & Strimmer, K. (2009). Entropy Inference and the James-Stein Estimator, with Application to Nonlinear Gene Association Networks.
 #' Journal of Machine Learning Research, 1469-1484.
 #'
@@ -103,7 +102,6 @@ MI.measure = function(XY, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax
 #' @importFrom entropy freqs.empirical freqs.Dirichlet freqs.shrink
 #'
 #' @references
-#'
 #' #' Hausser, J., & Strimmer, K. (2009). Entropy Inference and the James-Stein Estimator, with Application to Nonlinear Gene Association Networks.
 #' Journal of Machine Learning Research, 1469-1484.
 #'
@@ -183,7 +181,6 @@ CMI.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #' @importFrom entropy freqs.empirical freqs.Dirichlet freqs.shrink
 #'
 #' @references
-#'
 #' Hausser, J., & Strimmer, K. (2009). Entropy Inference and the James-Stein Estimator, with Application to Nonlinear Gene Association Networks.
 #' Journal of Machine Learning Research, 1469-1484.
 #'
@@ -358,7 +355,6 @@ PID.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #' @importFrom entropy freqs.empirical freqs.Dirichlet freqs.shrink
 #'
 #' @references
-#'
 #' Hausser, J., & Strimmer, K. (2009). Entropy Inference and the James-Stein Estimator, with Application to Nonlinear Gene Association Networks.
 #' Journal of Machine Learning Research, 1469-1484.
 #'
