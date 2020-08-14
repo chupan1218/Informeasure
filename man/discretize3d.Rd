@@ -30,9 +30,6 @@ By default in both methods, the number of bins N is initialized into a round-off
 }
 \examples{
 
-# load Informeasure library
-library("Informeasure")
-
 # three vectors that correspond to three continuous random variables
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)

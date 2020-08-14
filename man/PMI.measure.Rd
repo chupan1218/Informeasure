@@ -41,8 +41,6 @@ method = "minimax": Dirichlet distribution estimator with prior a = sqrt(sum(XY)
 method = "shrink": shrinkage estimator.
 }
 \examples{
-# load Informeasure library
-library("Informeasure")
 
 # three numeric vectors corresponding to three continuous random variables
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)

@@ -30,9 +30,6 @@
 #'
 #' @examples
 #'
-#' # load Informeasure library
-#' library("Informeasure")
-#'
 #' # two numeric vectors corresponding to two continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -112,9 +109,6 @@ MI.measure = function(XY, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax
 #' Journal of Machine Learning Research, 1469-1484.
 #'
 #' @examples
-#'
-#' # load Informeasure library
-#' library("Informeasure")
 #'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
@@ -198,9 +192,6 @@ CMI.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #' Mcgill, W. J. (1954). Multivariate information transmission. Psychometrika, 19(2), 97-116.
 #'
 #' @examples
-#'
-#' # load Informeasure library
-#' library("Informeasure")
 #'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
@@ -288,9 +279,6 @@ II.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minima
 #' Cell Systems, 5(3).
 #'
 #' @examples
-#'
-#' # load Informeasure library
-#' library("Informeasure")
 #'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
@@ -382,8 +370,6 @@ PID.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #' Proceedings of the National Academy of Sciences of the United States of America, 113(18), 5130-5135.
 #'
 #' @examples
-#' # load Informeasure library
-#' library("Informeasure")
 #'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)

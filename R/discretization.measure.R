@@ -15,9 +15,6 @@
 #'
 #' @examples
 #'
-#' # load Informeasure library
-#' library("Informeasure")
-#'
 #' # a numeric vector corresponding to a continuous random variable
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #'
@@ -55,9 +52,6 @@ discretize1D = function(x, model = c("uniform_width", "uniform_frequency")){
 #' @export
 #'
 #' @examples
-#'
-#' # load Informeasure library
-#' library("Informeasure")
 #'
 #' # two numeric vectors that correspond to two continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
@@ -98,9 +92,6 @@ discretize2D = function(x, y, model = c("uniform_width", "uniform_frequency")){
 #' @export
 #'
 #' @examples
-#'
-#' # load Informeasure library
-#' library("Informeasure")
 #'
 #' # three vectors that correspond to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)

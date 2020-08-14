@@ -21,10 +21,6 @@ The number of variables here is limited to three.
 }
 \examples{
 
-# load libraries
-library("Informeasure")
-library("entropy")
-
 # three numeric vectors corresponding to three continuous random variables
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -34,6 +30,7 @@ z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 count_xyz <- discretize3D(x, y, z, "uniform_width")
 
 # the joint probability distribution table of the count data
+library("entropy")
 probs_xyz <- freqs.empirical(count_xyz)
 
 # corresponding interaction information

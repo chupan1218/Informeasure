@@ -11,9 +11,6 @@
 #' @importFrom entropy entropy.plugin KL.plugin
 #'
 #' @examples
-#' # load libraries
-#' library("Informeasure")
-#' library("entropy")
 #'
 #' # two numeric vectors corresponding to two continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
@@ -23,6 +20,7 @@
 #' count_xy <- discretize2D(x, y, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
+#' library("entropy")
 #' probs_xy <- freqs.empirical(count_xy)
 #'
 #' # corresponding mutual information
@@ -64,10 +62,6 @@ MI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #'
 #' @examples
 #'
-#' # load libraries
-#' library("Informeasure")
-#' library("entropy")
-#'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -77,6 +71,7 @@ MI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' count_xyz <- discretize3D(x, y, z, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
+#' library("entropy")
 #' probs_xyz <- freqs.empirical(count_xyz)
 #'
 #' # corresponding conditional mutual information
@@ -115,10 +110,6 @@ CMI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' Mcgill, W. J. (1954). Multivariate information transmission. Psychometrika, 19(2), 97-116.
 #' @examples
 #'
-#' # load libraries
-#' library("Informeasure")
-#' library("entropy")
-#'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -128,6 +119,7 @@ CMI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' count_xyz <- discretize3D(x, y, z, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
+#' library("entropy")
 #' probs_xyz <- freqs.empirical(count_xyz)
 #'
 #' # corresponding interaction information
@@ -167,9 +159,6 @@ II.plugin = function(probs, unit = c("log", "log2", "log10")){
 #'
 #' @examples
 #'
-#' # load libraries
-#' library("Informeasure")
-#' library("entropy")
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -179,6 +168,7 @@ II.plugin = function(probs, unit = c("log", "log2", "log10")){
 #' count_xyz <- discretize3D(x, y, z, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
+#' library("entropy")
 #' probs_xyz <- freqs.empirical(count_xyz)
 #'
 #' # corresponding partial information decomposition
@@ -264,10 +254,6 @@ Redundancy = function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10"
 #'
 #' @examples
 #'
-#' # load libraries
-#' library("Informeasure")
-#' library("entropy")
-#'
 #' # three numeric vectors corresponding to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -277,6 +263,7 @@ Redundancy = function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10"
 #' count_xyz <- discretize3D(x, y, z, "uniform_width")
 #'
 #' # the joint probability distribution table of the count data
+#' library("entropy")
 #' probs_xyz <- freqs.empirical(count_xyz)
 #'
 #' # corresponding part mutual information

@@ -22,9 +22,6 @@ The number of bins N is initialized into a round-off value according to the squa
 }
 \examples{
 
-# load Informeasure library
-library("Informeasure")
-
 # a numeric vector corresponding to a continuous random variable
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 
