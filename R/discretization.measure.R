@@ -1,6 +1,6 @@
 #' Discretize one-dimensional continuous data into bins
 #'
-#' The function of discretize1d is used to assign the observations of a set of continuous random variables to bins,
+#' The function of discretize1D is used to assign the observations of a set of continuous random variables to bins,
 #' and returns a corresponding one-dimensional count table. Two of the most common discretization methods are available:
 #' "uniform width" and "uniform frequency".
 #'
@@ -22,11 +22,11 @@
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #'
 #' # corresponding count table estimated by "uniform width" algorithm
-#' discretize1d(x, "uniform_width")
+#' discretize1D(x, "uniform_width")
 #'
 #' # corresponding count table estimated by "uniform frequency" algorithm
-#' discretize1d(x, "uniform_frequency")
-discretize1d = function(x, model = c("uniform_width", "uniform_frequency")){
+#' discretize1D(x, "uniform_frequency")
+discretize1D = function(x, model = c("uniform_width", "uniform_frequency")){
 
   model = match.arg(model)
 
@@ -40,7 +40,7 @@ discretize1d = function(x, model = c("uniform_width", "uniform_frequency")){
 
 #' Discretize 2-dimensional continuous data into bins
 #'
-#' The function of discretize2d is used to assign the observations of two sets of continuous random variables to bins,
+#' The function of discretize2D is used to assign the observations of two sets of continuous random variables to bins,
 #' and returns a corresponding two-dimensional count table. Two of the most common discretization methods are available:
 #' "uniform width" and "uniform frequency".
 #'
@@ -51,7 +51,7 @@ discretize1d = function(x, model = c("uniform_width", "uniform_frequency")){
 #' @param y a numeric vector of the random variable y.
 #' @param model two discretization algorithms are available, "uniform_width" is the default.
 #'
-#' @return discretize2d returns a 2-dimensional count table.
+#' @return discretize2D returns a 2-dimensional count table.
 #' @export
 #'
 #' @examples
@@ -64,11 +64,11 @@ discretize1d = function(x, model = c("uniform_width", "uniform_frequency")){
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #'
 #' # corresponding count table estimated by "uniform width" algorithm
-#' discretize2d(x,y, "uniform_width")
+#' discretize2D(x,y, "uniform_width")
 #'
-#' # corresponding count table estimated by "uniform frequency" algorithm
-#' discretize2d(x,y, "uniform_frequency")
-discretize2d = function(x, y, model = c("uniform_width", "uniform_frequency")){
+#' # corresponding joint count table estimated by "uniform frequency" algorithm
+#' discretize2D(x,y, "uniform_frequency")
+discretize2D = function(x, y, model = c("uniform_width", "uniform_frequency")){
 
   model = match.arg(model)
 
@@ -82,7 +82,7 @@ discretize2d = function(x, y, model = c("uniform_width", "uniform_frequency")){
 
 #' Discretize 3-dimensional continuous data into bins
 #'
-#' The function of discretize3d is used to assign the observations of three sets of continuous random variables to bins,
+#' The function of discretize3D is used to assign the observations of three sets of continuous random variables to bins,
 #' and returns a corresponding three-dimensional count table. Two of the most common discretization methods are available:
 #' "uniform width" and "uniform frequency".
 #'
@@ -94,7 +94,7 @@ discretize2d = function(x, y, model = c("uniform_width", "uniform_frequency")){
 #' @param z a numeric vector of the random variable z.
 #' @param model two discretization algorithms are available, "uniform_width" is the default.
 #'
-#' @return discretize3d returns a 3-dimensional count table.
+#' @return discretize3D returns a 3-dimensional count table.
 #' @export
 #'
 #' @examples
@@ -108,11 +108,11 @@ discretize2d = function(x, y, model = c("uniform_width", "uniform_frequency")){
 #' z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 #'
 #' # corresponding count table estimated by "uniform width" algorithm
-#' discretize3d(x,y,z, "uniform_width")
+#' discretize3D(x,y,z, "uniform_width")
 #'
-#' # corresponding count table estimated by "uniform frequency" algorithm
-#' discretize3d(x,y,z, "uniform_frequency")
-discretize3d = function(x, y, z, model = c("uniform_width", "uniform_frequency")){
+#' # corresponding joint count table estimated by "uniform frequency" algorithm
+#' discretize3D(x,y,z, "uniform_frequency")
+discretize3D = function(x, y, z, model = c("uniform_width", "uniform_frequency")){
 
   model = match.arg(model)
 

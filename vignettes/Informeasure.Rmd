@@ -52,7 +52,7 @@ mRNAexpression <- log2(mRNAexpression + 1)
 x <- as.numeric( mRNAexpression[which(rownames(mRNAexpression)=="BRCA1"), ] )
 y <- as.numeric( mRNAexpression[which(rownames(mRNAexpression)=="BARD1"), ] )
 
-XY <- discretize2d(x,y)
+XY <- discretize2D(x,y)
 
 MI.measure(XY)
 ```
@@ -71,7 +71,7 @@ x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-26a-
 y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression) == "PTEN"), ])
 z <- as.numeric(lncRNAexpression[which(rownames(lncRNAexpression) == "PTENP1"), ])
 
-XYZ <- discretize3d(x,y,z)
+XYZ <- discretize3D(x,y,z)
 
 CMI.measure(XYZ)
 ```
@@ -90,7 +90,7 @@ x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-34a-
 y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression) == "MYC"), ])
 z <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-34b-5p"), ])
 
-XYZ <- discretize3d(x,y,z)
+XYZ <- discretize3D(x,y,z)
 
 II.measure(XYZ)
 ```
@@ -108,7 +108,7 @@ x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-34a-
 y <- as.numeric(miRNAexpression[which(rownames(miRNAexpression) == "hsa-miR-34b-5p"), ])
 z <- as.numeric(mRNAexpression[which(rownames(mRNAexpression) == "MYC"), ])
 
-XYZ <- discretize3d(x,y,z)
+XYZ <- discretize3D(x,y,z)
 
 PID.measure(XYZ)
 ```
@@ -127,7 +127,7 @@ x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression)   == "hsa-miR-26
 y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression)     == "PTEN"), ])
 z <- as.numeric(lncRNAexpression[which(rownames(lncRNAexpression) == "PTENP1"), ])
 
-XYZ <- discretize3d(x,y,z)
+XYZ <- discretize3D(x,y,z)
 
 PMI.measure(XYZ)
 ```

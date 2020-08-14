@@ -10,8 +10,8 @@ x <- as.numeric(miRNAexpression[which(rownames(miRNAexpression)   == "hsa-miR-26
 y <- as.numeric(mRNAexpression[which(rownames(mRNAexpression)     == "PTEN"), ])
 z <- as.numeric(lncRNAexpression[which(rownames(lncRNAexpression) == "PTENP1"), ])
 
-XY  <- discretize2d(x,y, model = "uniform_width")
-XYZ <- discretize3d(x,y,z, model = "uniform_frequency")
+XY  <- discretize2D(x,y, model = "uniform_width")
+XYZ <- discretize3D(x,y,z, model = "uniform_frequency")
 
 # mutual information
 MI.unittesting  <- MI.measure(XY,   method = "ML",       unit = "log")

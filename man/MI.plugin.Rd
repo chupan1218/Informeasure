@@ -19,18 +19,19 @@ MI.plugin returns the mutual information.
 MI.plugin measures the mutual information between two random variables from the joint probability distribution table.
 }
 \examples{
-# load Informeasure library
+# load libraries
 library("Informeasure")
+library("entropy")
 
 # two numeric vectors corresponding to two continuous random variables
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 
-# corresponding count table estimated by "uniform width" algorithm
-count_xy <- discretize2d(x, y, "uniform_width")
+# corresponding joint count table estimated by "uniform width" algorithm
+count_xy <- discretize2D(x, y, "uniform_width")
 
 # the joint probability distribution table of the count data
-probs_xy <- entropy::freqs.empirical(count_xy)
+probs_xy <- freqs.empirical(count_xy)
 
 # corresponding mutual information
 MI.plugin(probs_xy)

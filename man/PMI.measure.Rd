@@ -49,8 +49,8 @@ x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 
-# corresponding count table estimated by "uniform width" algorithm
-XYZ <- discretize3d(x, y, z, "uniform_width")
+# corresponding joint count table estimated by "uniform width" algorithm
+XYZ <- discretize3D(x, y, z, "uniform_width")
 
 # corresponding part mutual information
 PMI.measure(XYZ)

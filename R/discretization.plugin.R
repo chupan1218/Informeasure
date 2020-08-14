@@ -54,7 +54,7 @@ discretize1d.uniform_width = function(x)
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #'
-#' # corresponding count table estimated by "uniform width" algorithm
+#' # corresponding joint count table estimated by "uniform width" algorithm
 #' discretize2d.uniform_width(x,y)
 discretize2d.uniform_width = function(x, y)
 {
@@ -97,7 +97,7 @@ discretize2d.uniform_width = function(x, y)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #' z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 #'
-#' # corresponding count table estimated by "uniform width" algorithm
+#' # corresponding joint count table estimated by "uniform width" algorithm
 #' discretize3d.uniform_width(x,y,z)
 discretize3d.uniform_width = function(x, y, z)
 {
@@ -171,7 +171,7 @@ discretize1d.uniform_frequency = function(x)
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #'
-#' # corresponding count table estimated by "uniform frequency" algorithm
+#' # corresponding joint count table estimated by "uniform frequency" algorithm
 #' discretize2d.uniform_frequency(x,y)
 discretize2d.uniform_frequency = function(x, y)
 {
@@ -205,7 +205,7 @@ discretize2d.uniform_frequency = function(x, y)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #' z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 #'
-#' # corresponding count table estimated by "uniform frequency" algorithm
+#' # corresponding joint count table estimated by "uniform frequency" algorithm
 #' discretize3d.uniform_frequency(x,y,z)
 discretize3d.uniform_frequency = function(x, y, z)
 {

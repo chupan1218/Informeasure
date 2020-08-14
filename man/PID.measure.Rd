@@ -52,27 +52,17 @@ x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 
-# corresponding count table estimated by "uniform width" algorithm
-XYZ <- discretize3d(x, y, z, "uniform_width")
+# corresponding joint count table estimated by "uniform width" algorithm
+XYZ <- discretize3D(x, y, z, "uniform_width")
 
 # corresponding partial information decomposition
 PID.measure(XYZ)
-PID.measure(XYZ, method = "Jeffreys")
-PID.measure(XYZ, method = "Laplace")
-PID.measure(XYZ, method = "SG")
-PID.measure(XYZ, method = "minimax")
-PID.measure(XYZ, method = "shrink")
 
 # corresponding count table estimated by "uniform frequency" algorithm
-XYZ <- discretize3d(x, y, z, "uniform_frequency")
+XYZ <- discretize3D(x, y, z, "uniform_frequency")
 
 # corresponding partial information decomposition
 PID.measure(XYZ)
-PID.measure(XYZ, method = "Jeffreys")
-PID.measure(XYZ, method = "Laplace")
-PID.measure(XYZ, method = "SG")
-PID.measure(XYZ, method = "minimax")
-PID.measure(XYZ, method = "shrink")
 }
 \references{
 Hausser, J., & Strimmer, K. (2009). Entropy Inference and the James-Stein Estimator, with Application to Nonlinear Gene Association Networks.
@@ -81,5 +71,5 @@ Journal of Machine Learning Research, 1469-1484.
 Williams, P. L., & Beer, R. D. (2010). Nonnegative Decomposition of Multivariate Information. arXiv: Information Theory.
 
 Chan, T. E., Stumpf, M. P., & Babtie, A. C. (2017). Gene Regulatory Network Inference from Single-Cell Data Using Multivariate Information Measures.
-Cell systems, 5(3).
+Cell Systems, 5(3).
 }

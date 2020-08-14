@@ -48,8 +48,8 @@ library("Informeasure")
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 
-# corresponding count table estimated by "uniform width" algorithm
-XY <- discretize2d(x, y, "uniform_width")
+# corresponding joint count table estimated by "uniform width" algorithm
+XY <- discretize2D(x, y, "uniform_width")
 
 # corresponding mutual information
 MI.measure(XY)

@@ -37,8 +37,8 @@
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #'
-#' # corresponding count table estimated by "uniform width" algorithm
-#' XY <- discretize2d(x, y, "uniform_width")
+#' # corresponding joint count table estimated by "uniform width" algorithm
+#' XY <- discretize2D(x, y, "uniform_width")
 #'
 #' # corresponding mutual information
 #' MI.measure(XY)
@@ -121,8 +121,8 @@ MI.measure = function(XY, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #' z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 #'
-#' # corresponding count table estimated by "uniform width" algorithm
-#' XYZ <- discretize3d(x, y, z, "uniform_width")
+#' # corresponding joint count table estimated by "uniform width" algorithm
+#' XYZ <- discretize3D(x, y, z, "uniform_width")
 #'
 #' # corresponding conditional mutual information
 #' CMI.measure(XYZ)
@@ -207,8 +207,8 @@ CMI.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #' z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 #'
-#' # corresponding count table estimated by "uniform width" algorithm
-#' XYZ <- discretize3d(x, y, z, "uniform_width")
+#' # corresponding joint count table estimated by "uniform width" algorithm
+#' XYZ <- discretize3D(x, y, z, "uniform_width")
 #'
 #' # corresponding interaction information
 #' II.measure(XYZ)
@@ -297,27 +297,17 @@ II.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minima
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #' z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 #'
-#' # corresponding count table estimated by "uniform width" algorithm
-#' XYZ <- discretize3d(x, y, z, "uniform_width")
+#' # corresponding joint count table estimated by "uniform width" algorithm
+#' XYZ <- discretize3D(x, y, z, "uniform_width")
 #'
 #' # corresponding partial information decomposition
 #' PID.measure(XYZ)
-#' PID.measure(XYZ, method = "Jeffreys")
-#' PID.measure(XYZ, method = "Laplace")
-#' PID.measure(XYZ, method = "SG")
-#' PID.measure(XYZ, method = "minimax")
-#' PID.measure(XYZ, method = "shrink")
 #'
 #' # corresponding count table estimated by "uniform frequency" algorithm
-#' XYZ <- discretize3d(x, y, z, "uniform_frequency")
+#' XYZ <- discretize3D(x, y, z, "uniform_frequency")
 #'
 #' # corresponding partial information decomposition
 #' PID.measure(XYZ)
-#' PID.measure(XYZ, method = "Jeffreys")
-#' PID.measure(XYZ, method = "Laplace")
-#' PID.measure(XYZ, method = "SG")
-#' PID.measure(XYZ, method = "minimax")
-#' PID.measure(XYZ, method = "shrink")
 PID.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax",  "shrink"),
                        lambda.probs, unit = c("log", "log2", "log10"), verbose = TRUE){
 
@@ -400,8 +390,8 @@ PID.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 #' z <- c(3.0, 7.0, 2.0,  11,  10,  10,  14, 2.0,  11)
 #'
-#' # corresponding count table estimated by "uniform width" algorithm
-#' XYZ <- discretize3d(x, y, z, "uniform_width")
+#' # corresponding joint count table estimated by "uniform width" algorithm
+#' XYZ <- discretize3D(x, y, z, "uniform_width")
 #'
 #' # corresponding part mutual information
 #' PMI.measure(XYZ)
