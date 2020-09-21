@@ -4,7 +4,7 @@
 \alias{discretize3D}
 \title{Discretize 3-dimensional continuous data into bins}
 \usage{
-discretize3D(x, y, z, algorithm = c("uniform_width", "uniform_frequency"))
+discretize3D(x, y, z, model = c("uniform_width", "uniform_frequency"))
 }
 \arguments{
 \item{x}{a numeric vector of the random variable x.}
@@ -13,7 +13,7 @@ discretize3D(x, y, z, algorithm = c("uniform_width", "uniform_frequency"))
 
 \item{z}{a numeric vector of the random variable z.}
 
-\item{algorithm}{two discretization algorithms are available, "uniform_width" is the default.}
+\item{model}{two discretization algorithms are available, "uniform_width" is the default.}
 }
 \value{
 discretize3D returns a 3-dimensional count table.
