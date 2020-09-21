@@ -4,8 +4,8 @@
 #' and returns a corresponding one-dimensional count table. Two of the most common discretization methods are available:
 #' "uniform width" and "uniform frequency".
 #'
-#' Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width,
-#' while Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
+#' Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width.
+#' Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
 #' By default in both methods, the number of bins N is initialized into a round-off value according to the square root of the data size.
 #' @param x a numeric vector of the random variable x.
 #' @param model two discretization algorithms are available, "uniform_width" is the default.
@@ -44,8 +44,8 @@ discretize1D <- function(x, model = c("uniform_width", "uniform_frequency")){
 #' and returns a corresponding two-dimensional count table. Two of the most common discretization methods are available:
 #' "uniform width" and "uniform frequency".
 #'
-#' Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width,
-#' while Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
+#' Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width.
+#' Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
 #' By default in both methods, the number of bins N is initialized into a round-off value according to the square root of the data size.
 #' @param x a numeric vector of the random variable x.
 #' @param y a numeric vector of the random variable y.
@@ -86,8 +86,8 @@ discretize2D <- function(x, y, model = c("uniform_width", "uniform_frequency")){
 #' and returns a corresponding three-dimensional count table. Two of the most common discretization methods are available:
 #' "uniform width" and "uniform frequency".
 #'
-#' Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width,
-#' while Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
+#' Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width.
+#' Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
 #' By default in both methods, the number of bins N is initialized into a round-off value according to the square root of the data size.
 #' @param x a numeric vector of the random variable x.
 #' @param y a numeric vector of the random variable y.
@@ -96,7 +96,6 @@ discretize2D <- function(x, y, model = c("uniform_width", "uniform_frequency")){
 #'
 #' @return discretize3D returns a 3-dimensional count table.
 #' @export
-#'
 #'
 #' @examples
 #'
