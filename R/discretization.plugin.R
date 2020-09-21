@@ -21,7 +21,7 @@ discretize1d.uniform_width <- function(x)
   numBins <- floor(sqrt(length(x)))
   r <- range(x)
 
-  b <- seq(from = r[1], to = r[2], length.out = numBins + 1)
+  b <- seq(from = r[1], to = r[2], length.out = (numBins + 1))
   X <- table(cut(x, breaks = b , include.lowest = TRUE))
 
   return(X)
@@ -55,8 +55,8 @@ discretize2d.uniform_width <- function(x, y)
   r1 <- range(x)
   r2 <- range(y)
 
-  b1 <- seq(from = r1[1], to = r1[2], length.out = numBins1 + 1)
-  b2 <- seq(from = r2[1], to = r2[2], length.out = numBins2 + 1)
+  b1 <- seq(from = r1[1], to = r1[2], length.out = (numBins1 + 1))
+  b2 <- seq(from = r2[1], to = r2[2], length.out = (numBins2 + 1))
 
   XY <- table(cut(x, breaks = b1, include.lowest = TRUE),
               cut(y, breaks = b2, include.lowest = TRUE))
@@ -96,9 +96,9 @@ discretize3d.uniform_width <- function(x, y, z)
   r2 <- range(y)
   r3 <- range(z)
 
-  b1 <- seq(from = r1[1], to = r1[2], length.out = numBins1 + 1)
-  b2 <- seq(from = r2[1], to = r2[2], length.out = numBins2 + 1)
-  b3 <- seq(from = r3[1], to = r3[2], length.out = numBins3 + 1)
+  b1 <- seq(from = r1[1], to = r1[2], length.out = (numBins1 + 1))
+  b2 <- seq(from = r2[1], to = r2[2], length.out = (numBins2 + 1))
+  b3 <- seq(from = r3[1], to = r3[2], length.out = (numBins3 + 1))
 
   xyz <- table(cut(x, breaks = b1, include.lowest = TRUE),
                cut(y, breaks = b2, include.lowest = TRUE),

@@ -4,7 +4,7 @@
 \alias{discretize3D}
 \title{Discretize 3-dimensional continuous data into bins}
 \usage{
-discretize3D(x, y, z, model = c("uniform_width", "uniform_frequency"))
+discretize3D(x, y, z, algorithm = c("uniform_width", "uniform_frequency"))
 }
 \arguments{
 \item{x}{a numeric vector of the random variable x.}
@@ -13,7 +13,7 @@ discretize3D(x, y, z, model = c("uniform_width", "uniform_frequency"))
 
 \item{z}{a numeric vector of the random variable z.}
 
-\item{model}{two discretization algorithms are available, "uniform_width" is the default.}
+\item{algorithm}{two discretization algorithms are available, "uniform_width" is the default.}
 }
 \value{
 discretize3D returns a 3-dimensional count table.
@@ -24,15 +24,11 @@ and returns a corresponding three-dimensional count table. Two of the most commo
 "uniform width" and "uniform frequency".
 }
 \details{
-Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width.
-Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
+Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width,
+while Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
 By default in both methods, the number of bins N is initialized into a round-off value according to the square root of the data size.
 }
 \examples{
-
-# load Informeasure library
-library("Informeasure")
-
 # three vectors that correspond to three continuous random variables
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)

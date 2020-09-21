@@ -4,14 +4,14 @@
 \alias{discretize2D}
 \title{Discretize 2-dimensional continuous data into bins}
 \usage{
-discretize2D(x, y, model = c("uniform_width", "uniform_frequency"))
+discretize2D(x, y, algorithm = c("uniform_width", "uniform_frequency"))
 }
 \arguments{
 \item{x}{a numeric vector of the random variable x.}
 
 \item{y}{a numeric vector of the random variable y.}
 
-\item{model}{two discretization algorithms are available, "uniform_width" is the default.}
+\item{algorithm}{two discretization algorithms are available, "uniform_width" is the default.}
 }
 \value{
 discretize2D returns a 2-dimensional count table.
@@ -22,15 +22,11 @@ and returns a corresponding two-dimensional count table. Two of the most common 
 "uniform width" and "uniform frequency".
 }
 \details{
-Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width.
-Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
+Uniform width-based method ("uniform_width") divides the continuous data into N bins with equal width,
+while Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
 By default in both methods, the number of bins N is initialized into a round-off value according to the square root of the data size.
 }
 \examples{
-
-# load Informeasure library
-library("Informeasure")
-
 # two numeric vectors that correspond to two continuous random variables
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
