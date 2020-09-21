@@ -1,3 +1,8 @@
+Changes in version 0.99.6 (2020-09-21)
+-------------------------
+o make changes
+
+
 Changes in version 0.99.5 (2020-09-20)
 -------------------------
 o Fix the the issue reported in the build report where used "1:lenght"" instead of "seq_len"
