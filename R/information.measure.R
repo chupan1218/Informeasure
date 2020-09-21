@@ -37,40 +37,40 @@
 #'
 #' # corresponding mutual information
 #' MI.measure(XY)
-MI.measure = function(XY, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink"),
-                      lambda.probs, unit = c("log", "log2", "log10"), verbose = TRUE){
+MI.measure <- function(XY, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink"),
+                       lambda.probs, unit = c("log", "log2", "log10"), verbose = TRUE){
 
-  method = match.arg(method)
-    unit = match.arg(unit)
+  method <- match.arg(method)
+    unit <- match.arg(unit)
 
   if(method == "ML"){
-    probs = freqs.empirical(XY)
-    MI = MI.plugin(probs, unit)
+    probs <- freqs.empirical(XY)
+    MI <- MI.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = freqs.Dirichlet(XY, a = 1/2)
-    MI = MI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XY, a = 1/2)
+    MI <- MI.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = freqs.Dirichlet(XY, a = 1)
-    MI = MI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XY, a = 1)
+    MI <- MI.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = freqs.Dirichlet(XY, a = 1/length(XY))
-    MI = MI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XY, a = 1/length(XY))
+    MI <- MI.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = freqs.Dirichlet(XY, a = sqrt(sum(XY))/length(XY))
-    MI = MI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XY, a = sqrt(sum(XY))/length(XY))
+    MI <- MI.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = freqs.shrink(XY, lambda.freqs = lambda.probs, verbose = verbose)
-    MI = MI.plugin(probs, unit)
+    probs <- freqs.shrink(XY, lambda.freqs = lambda.probs, verbose = verbose)
+    MI <- MI.plugin(probs, unit)
   }
 
   return(MI)
@@ -116,40 +116,40 @@ MI.measure = function(XY, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax
 #'
 #' # corresponding conditional mutual information
 #' CMI.measure(XYZ)
-CMI.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink"),
+CMI.measure <- function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink"),
                        lambda.probs, unit = c("log", "log2", "log10"), verbose = TRUE){
 
-  method = match.arg(method)
-    unit = match.arg(unit)
+  method <- match.arg(method)
+    unit <- match.arg(unit)
 
   if(method == "ML"){
-    probs = freqs.empirical(XYZ)
-    CMI = CMI.plugin(probs, unit)
+    probs <- freqs.empirical(XYZ)
+    CMI <- CMI.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = freqs.Dirichlet(XYZ, a = 1/2)
-    CMI = CMI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = 1/2)
+    CMI <- CMI.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = freqs.Dirichlet(XYZ, a = 1)
-    CMI = CMI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = 1)
+    CMI <- CMI.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = freqs.Dirichlet(XYZ, a = length(XYZ))
-    CMI = CMI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = length(XYZ))
+    CMI <- CMI.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = freqs.Dirichlet(XYZ, a = sqrt(sum(XYZ))/length(XYZ))
-    CMI = CMI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = sqrt(sum(XYZ))/length(XYZ))
+    CMI <- CMI.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
-    CMI = CMI.plugin(probs, unit)
+    probs <- freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
+    CMI <- CMI.plugin(probs, unit)
   }
 
   return(CMI)
@@ -197,40 +197,40 @@ CMI.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #'
 #' # corresponding interaction information
 #' II.measure(XYZ)
-II.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink"),
+II.measure <- function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax", "shrink"),
                       lambda.probs, unit = c("log", "log2", "log10"), verbose = TRUE){
 
-  method = match.arg(method)
-    unit = match.arg(unit)
+  method <- match.arg(method)
+    unit <- match.arg(unit)
 
   if(method == "ML"){
-    probs = freqs.empirical(XYZ)
-    II = II.plugin(probs, unit)
+    probs <- freqs.empirical(XYZ)
+    II <- II.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = freqs.Dirichlet(XYZ, a = 1/2)
-    II = II.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = 1/2)
+    II <- II.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = freqs.Dirichlet(XYZ, a = 1)
-    II = II.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = 1)
+    II <- II.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = freqs.Dirichlet(XYZ, a = length(XYZ))
-    II = II.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = length(XYZ))
+    II <- II.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = freqs.Dirichlet(XYZ, a = sqrt(sum(XYZ))/length(XYZ))
-    II = II.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = sqrt(sum(XYZ))/length(XYZ))
+    II <- II.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
-    II = II.plugin(probs, unit)
+    probs <- freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
+    II <- II.plugin(probs, unit)
   }
 
   return(II)
@@ -289,40 +289,40 @@ II.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minima
 #'
 #' # corresponding partial information decomposition
 #' PID.measure(XYZ)
-PID.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax",  "shrink"),
+PID.measure <- function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax",  "shrink"),
                        lambda.probs, unit = c("log", "log2", "log10"), verbose = TRUE){
 
-  method = match.arg(method)
-    unit = match.arg(unit)
+  method <- match.arg(method)
+    unit <- match.arg(unit)
 
   if(method == "ML"){
-    probs = freqs.empirical(XYZ)
-    PID = PID.plugin(probs, unit)
+    probs <- freqs.empirical(XYZ)
+    PID <- PID.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = freqs.Dirichlet(XYZ, a = 1/2)
-    PID = PID.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = 1/2)
+    PID <- PID.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = freqs.Dirichlet(XYZ, a = 1)
-    PID = PID.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = 1)
+    PID <- PID.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = freqs.Dirichlet(XYZ, a = length(XYZ))
-    PID = PID.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = length(XYZ))
+    PID <- PID.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = freqs.Dirichlet(XYZ, sqrt(sum(XYZ))/length(XYZ))
-    PID = PID.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, sqrt(sum(XYZ))/length(XYZ))
+    PID <- PID.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
-    PID = PID.plugin(probs, unit)
+    probs <- freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
+    PID <- PID.plugin(probs, unit)
   }
 
   return(PID)
@@ -372,40 +372,40 @@ PID.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minim
 #'
 #' # corresponding part mutual information
 #' PMI.measure(XYZ)
-PMI.measure = function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax",  "shrink"),
+PMI.measure <- function(XYZ, method = c("ML", "Jeffreys", "Laplace", "SG", "minimax",  "shrink"),
                        lambda.probs, unit = c("log", "log2", "log10"), verbose = TRUE){
 
-  method = match.arg(method)
-    unit = match.arg(unit)
+  method <- match.arg(method)
+    unit <- match.arg(unit)
 
   if(method == "ML"){
-    probs = freqs.empirical(XYZ)
-    PMI = PMI.plugin(probs, unit)
+    probs <- freqs.empirical(XYZ)
+    PMI <- PMI.plugin(probs, unit)
   }
 
   if(method == "Jeffreys"){
-    probs = freqs.Dirichlet(XYZ, a = 1/2)
-    PMI = PMI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = 1/2)
+    PMI <- PMI.plugin(probs, unit)
   }
 
   if(method == "Laplace"){
-    probs = freqs.Dirichlet(XYZ, a = 1)
-    PMI = PMI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = 1)
+    PMI <- PMI.plugin(probs, unit)
   }
 
   if(method == "SG"){
-    probs = freqs.Dirichlet(XYZ, a = length(XYZ))
-    PMI = PMI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, a = length(XYZ))
+    PMI <- PMI.plugin(probs, unit)
   }
 
   if(method == "minimax"){
-    probs = freqs.Dirichlet(XYZ, sqrt(sum(XYZ))/length(XYZ))
-    PMI = PMI.plugin(probs, unit)
+    probs <- freqs.Dirichlet(XYZ, sqrt(sum(XYZ))/length(XYZ))
+    PMI <- PMI.plugin(probs, unit)
   }
 
   if(method == "shrink"){
-    probs = freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
-    PMI = PMI.plugin(probs, unit)
+    probs <- freqs.shrink(XYZ, lambda.freqs = lambda.probs, verbose = verbose)
+    PMI <- PMI.plugin(probs, unit)
   }
 
   return(PMI)

@@ -10,10 +10,14 @@
 #' @param x a numeric vector of the random variable x.
 #' @param model two discretization algorithms are available, "uniform_width" is the default.
 #'
-#' @return discretize1d returns a one-dimensional count table.
+#' @return discretize1D returns a one-dimensional count table.
 #' @export
 #'
 #' @examples
+#'
+#' # load Informeasure library
+#' library("Informeasure")
+#'
 #' # a numeric vector corresponding to a continuous random variable
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #'
@@ -22,9 +26,9 @@
 #'
 #' # corresponding count table estimated by "uniform frequency" algorithm
 #' discretize1D(x, "uniform_frequency")
-discretize1D = function(x, model = c("uniform_width", "uniform_frequency")){
+discretize1D <- function(x, model = c("uniform_width", "uniform_frequency")){
 
-  model = match.arg(model)
+  model <- match.arg(model)
 
   if(model == "uniform_width")
     return(discretize1d.uniform_width(x))
@@ -51,6 +55,10 @@ discretize1D = function(x, model = c("uniform_width", "uniform_frequency")){
 #' @export
 #'
 #' @examples
+#'
+#' # load Informeasure library
+#' library("Informeasure")
+#'
 #' # two numeric vectors that correspond to two continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -58,11 +66,11 @@ discretize1D = function(x, model = c("uniform_width", "uniform_frequency")){
 #' # corresponding count table estimated by "uniform width" algorithm
 #' discretize2D(x,y, "uniform_width")
 #'
-#' # corresponding joint count table estimated by "uniform frequency" algorithm
+#' # corresponding count table estimated by "uniform frequency" algorithm
 #' discretize2D(x,y, "uniform_frequency")
-discretize2D = function(x, y, model = c("uniform_width", "uniform_frequency")){
+discretize2D <- function(x, y, model = c("uniform_width", "uniform_frequency")){
 
-  model = match.arg(model)
+  model <- match.arg(model)
 
   if(model == "uniform_width")
     return(discretize2d.uniform_width(x,y))
@@ -89,7 +97,12 @@ discretize2D = function(x, y, model = c("uniform_width", "uniform_frequency")){
 #' @return discretize3D returns a 3-dimensional count table.
 #' @export
 #'
+#'
 #' @examples
+#'
+#' # load Informeasure library
+#' library("Informeasure")
+#'
 #' # three vectors that correspond to three continuous random variables
 #' x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 #' y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -98,11 +111,11 @@ discretize2D = function(x, y, model = c("uniform_width", "uniform_frequency")){
 #' # corresponding count table estimated by "uniform width" algorithm
 #' discretize3D(x,y,z, "uniform_width")
 #'
-#' # corresponding joint count table estimated by "uniform frequency" algorithm
+#' # corresponding count table estimated by "uniform frequency" algorithm
 #' discretize3D(x,y,z, "uniform_frequency")
-discretize3D = function(x, y, z, model = c("uniform_width", "uniform_frequency")){
+discretize3D <- function(x, y, z, model = c("uniform_width", "uniform_frequency")){
 
-  model = match.arg(model)
+  model <- match.arg(model)
 
   if(model == "uniform_width")
     return(discretize3d.uniform_width(x,y,z))

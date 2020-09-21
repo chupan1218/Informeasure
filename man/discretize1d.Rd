@@ -12,7 +12,7 @@ discretize1D(x, model = c("uniform_width", "uniform_frequency"))
 \item{model}{two discretization algorithms are available, "uniform_width" is the default.}
 }
 \value{
-discretize1d returns a one-dimensional count table.
+discretize1D returns a one-dimensional count table.
 }
 \description{
 The function of discretize1D is used to assign the observations of a set of continuous random variables to bins,
@@ -25,6 +25,10 @@ Uniform frequency-based method ("uniform_frequency") divides the continuous data
 By default in both methods, the number of bins N is initialized into a round-off value according to the square root of the data size.
 }
 \examples{
+
+# load Informeasure library
+library("Informeasure")
+
 # a numeric vector corresponding to a continuous random variable
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 

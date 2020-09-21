@@ -27,6 +27,10 @@ Uniform frequency-based method ("uniform_frequency") divides the continuous data
 By default in both methods, the number of bins N is initialized into a round-off value according to the square root of the data size.
 }
 \examples{
+
+# load Informeasure library
+library("Informeasure")
+
 # two numeric vectors that correspond to two continuous random variables
 x <- c(0.0, 0.2, 0.2, 0.7, 0.9, 0.9, 0.9, 0.9, 1.0)
 y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
@@ -34,6 +38,6 @@ y <- c(1.0, 2.0,  12, 8.0, 1.0, 9.0, 0.0, 3.0, 9.0)
 # corresponding count table estimated by "uniform width" algorithm
 discretize2D(x,y, "uniform_width")
 
-# corresponding joint count table estimated by "uniform frequency" algorithm
+# corresponding count table estimated by "uniform frequency" algorithm
 discretize2D(x,y, "uniform_frequency")
 }

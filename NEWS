@@ -1,19 +1,26 @@
-Changes in version 0.99.4 (2018-08-14)
+Changes in version 0.99.5 (2020-09-20)
+-------------------------
+o Fix the the issue reported in the build report where used "1:lenght"" instead of "seq_len"
+o Use "<-" for assignment rather than "="
+o Fix indentation
+
+
+Changes in version 0.99.4 (2020-08-14)
 -------------------------
 o Fix the warning of unnecessary package calls
 
 
-Changes in version 0.99.3 (2018-08-14)
+Changes in version 0.99.3 (2020-08-14)
 -------------------------
 o Fix the warning of unnecessary package calls
 
 
-Changes in version 0.99.2 (2018-08-14)
+Changes in version 0.99.2 (2020-08-14)
 -------------------------
 o Fix the warning of unnecessary package calls
 
 
-Changes in version 0.99.1 (2018-08-13)
+Changes in version 0.99.1 (2020-08-13)
 -------------------------
 o Made the following significant changes
   o Added Informeasure.Rproj into the .gitignore file
@@ -24,6 +31,6 @@ o Made the following significant changes
   o Use TRUE/FALSE instead of T/F in PMI.plugin()
 
 
-Changes in version 0.99.0 (2018-08-09)
+Changes in version 0.99.0 (2020-08-09)
 -------------------------
 o Submitted to Bioconductor

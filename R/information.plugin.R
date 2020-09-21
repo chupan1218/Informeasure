@@ -9,6 +9,8 @@
 #' @export
 #' @import entropy
 #' @importFrom entropy entropy.plugin KL.plugin
+#' @import matrixStats
+#' @importFrom matrixStats rowSums2 colSums2
 #'
 #' @examples
 #' # two numeric vectors corresponding to two continuous random variables
@@ -24,19 +26,19 @@
 #'
 #' # corresponding mutual information
 #' MI.plugin(probs_xy)
-MI.plugin = function(probs, unit = c("log", "log2", "log10")){
+MI.plugin <- function(probs, unit = c("log", "log2", "log10")){
 
-  unit = match.arg(unit)
+  unit <- match.arg(unit)
 
-  MI = entropy.plugin(rowSums(probs),  unit = unit) +
-       entropy.plugin(colSums(probs),  unit = unit) -
-       entropy.plugin(probs,           unit = unit)
+  MI <- entropy.plugin(rowSums2(probs, dim. = dim(probs)),  unit = unit) +
+        entropy.plugin(colSums2(probs, dim. = dim(probs)),  unit = unit) -
+        entropy.plugin(probs,           unit = unit)
 
-  #probs.x = rowSums(probs) # marginal probability
-  #probs.y = colSums(probs)
-  #probs.null = probs.x %o% probs.y # independence null model
+  #probs.x <- rowSums(probs) # marginal probability
+  #probs.y <- colSums(probs)
+  #probs.null <- probs.x %o% probs.y # independence null model
 
-  #MI = KL.plugin(probs, probs.null, unit = unit)
+  #MI <- KL.plugin(probs, probs.null, unit = unit)
 
   return(MI)
 }
@@ -73,19 +75,19 @@ MI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #'
 #' # corresponding conditional mutual information
 #' CMI.plugin(probs_xyz)
-CMI.plugin = function(probs, unit = c("log", "log2", "log10")){
+CMI.plugin <- function(probs, unit = c("log", "log2", "log10")){
 
-  unit = match.arg(unit)
+  unit <- match.arg(unit)
 
-  p_XYZ = probs
-  p_Z   = colSums(probs, dims = 2L)
-  p_XZ  = apply(probs, c(1,3), sum)
-  p_YZ  = colSums(probs, dims = 1L)
+  p_XYZ <- probs
+  p_Z <- colSums(probs, dims = 2L)
+  p_XZ <- rowSums(aperm(probs, c(1,3,2)), dims = 2L) #p_XZ <- apply(probs, c(1,3), sum)
+  p_YZ <- colSums(probs, dims = 1L)
 
-  CMI = entropy.plugin(p_XZ,  unit = unit) +
-        entropy.plugin(p_YZ,  unit = unit) -
-        entropy.plugin(p_XYZ, unit = unit) -
-        entropy.plugin(p_Z,   unit = unit)
+  CMI <- entropy.plugin(p_XZ,  unit = unit) +
+         entropy.plugin(p_YZ,  unit = unit) -
+         entropy.plugin(p_XYZ, unit = unit) -
+         entropy.plugin(p_Z,   unit = unit)
 
   return(CMI)
 }
@@ -119,14 +121,14 @@ CMI.plugin = function(probs, unit = c("log", "log2", "log10")){
 #'
 #' # corresponding interaction information
 #' II.plugin(probs_xyz)
-II.plugin = function(probs, unit = c("log", "log2", "log10")){
+II.plugin <- function(probs, unit = c("log", "log2", "log10")){
 
-  unit = match.arg(unit)
+  unit <- match.arg(unit)
 
-  p_XYZ = probs
-  p_XY  = rowSums(probs, dims = 2L)
+  p_XYZ <- probs
+  p_XY <- rowSums(probs, dims = 2L)
 
-  II = CMI.plugin(p_XYZ, unit) - MI.plugin(p_XY, unit)
+  II <- CMI.plugin(p_XYZ, unit) - MI.plugin(p_XY, unit)
 
   return(II)
 }
@@ -166,64 +168,64 @@ II.plugin = function(probs, unit = c("log", "log2", "log10")){
 #'
 #' # corresponding partial information decomposition
 #' PID.plugin(probs_xyz)
-PID.plugin = function(probs, unit = c("log", "log2", "log10")){
+PID.plugin <- function(probs, unit = c("log", "log2", "log10")){
 
-  unit = match.arg(unit)
+  unit <- match.arg(unit)
 
-  p_X   = rowSums(probs, dims = 1L)
-  p_XZ  = apply(probs, c(1,3), sum)
-  p_Y   = apply(probs[,,], 2, sum)
-  p_YZ  = colSums(probs, dims = 1L)
-  p_Z   = colSums(probs, dims = 2L)
+  p_X <- rowSums(probs, dims = 1L)
+  p_XZ <- rowSums(aperm(probs, c(1,3,2)), dims = 2L) # p_XZ <- apply(probs, c(1,3), sum)
+  p_Y <- colSums(rowSums(probs, dims = 2L), dims = 1L) # p_Y <- apply(probs[,,], 2, sum)
+  p_YZ <- colSums(probs, dims = 1L)
+  p_Z <- colSums(probs, dims = 2L)
 
-  I_XZ = MI.plugin(p_XZ, unit)
-  I_YZ = MI.plugin(p_YZ, unit)
+  I_XZ <- MI.plugin(p_XZ, unit)
+  I_YZ <- MI.plugin(p_YZ, unit)
 
   Redundancy <- Redundancy(p_XZ, p_YZ, p_X, p_Y, p_Z, unit)
 
-  Unique_Y = I_XZ - Redundancy
-  Unique_Y = ifelse(Unique_Y>0, Unique_Y, 0)
+  Unique_Y <- I_XZ - Redundancy
+  Unique_Y <- ifelse(Unique_Y>0, Unique_Y, 0)
 
-  Unique_X = I_YZ - Redundancy
-  Unique_X = ifelse(Unique_X>0, Unique_X, 0)
+  Unique_X <- I_YZ - Redundancy
+  Unique_X <- ifelse(Unique_X>0, Unique_X, 0)
 
-  Synergy = II.plugin(probs, unit) + Redundancy
-  Synergy = ifelse(Synergy>0, Synergy, 0)
+  Synergy <- II.plugin(probs, unit) + Redundancy
+  Synergy <- ifelse(Synergy>0, Synergy, 0)
 
-  PID = Synergy + Unique_Y + Unique_X + Redundancy
+  PID <- Synergy + Unique_Y + Unique_X + Redundancy
 
   return(data.frame(Synergy = Synergy,Unique_X = Unique_X, Unique_Y = Unique_Y,
                     Redundancy = Redundancy, PID = PID))
 }
 
-specific_information = function(p_iz, p_i, p_z, unit = c("log", "log2", "log10")){
+specific_information <- function(p_iz, p_i, p_z, unit = c("log", "log2", "log10")){
 
-  unit = match.arg(unit)
+  unit <- match.arg(unit)
 
-  p_i_z = t(t(p_iz) /p_z)  ##p(i|z)
+  p_i_z <- t(t(p_iz) /p_z)  ##p(i|z)
 
-  p_z_i = t(p_iz/p_i) ##p(z|i)
+  p_z_i <- t(p_iz/p_i) ##p(z|i)
 
-  tmp = t((log(1/p_z)) - (log(1/p_z_i))) * p_i_z
+  tmp <- t((log(1/p_z)) - (log(1/p_z_i))) * p_i_z
 
-  if (unit == "log2")  tmp = t((log(1/p_z, 2))  - (log(1/p_z_i, 2))) * p_i_z  # change from log to log2 scale
-  if (unit == "log10") tmp = t((log(1/p_z, 10)) - (log(1/p_z_i, 10))) * p_i_z # change from log to log10 scale
+  if (unit == "log2")  tmp <- t((log(1/p_z, 2))  - (log(1/p_z_i, 2))) * p_i_z  # change from log to log2 scale
+  if (unit == "log10") tmp <- t((log(1/p_z, 10)) - (log(1/p_z_i, 10))) * p_i_z # change from log to log10 scale
 
-  specific_information = colSums(tmp, na.rm = TRUE)
+  specific_information <- colSums(tmp, na.rm = TRUE)
 
   return(specific_information)
 }
 
-Redundancy = function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10")){
+Redundancy <- function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10")){
 
-  unit = match.arg(unit)
+  unit <- match.arg(unit)
 
-  specific_information_X = specific_information(p_XZ, p_X, p_Z, unit)
-  specific_information_Y = specific_information(p_YZ, p_Y, p_Z, unit)
+  specific_information_X <- specific_information(p_XZ, p_X, p_Z, unit)
+  specific_information_Y <- specific_information(p_YZ, p_Y, p_Z, unit)
   #cat("specific_information_X: ",specific_information_X,
   #    "specific_information_y: ",specific_information_y,"\n")
 
-  minimum_specific_information = apply(cbind(specific_information_X, specific_information_Y), 1, min)
+  minimum_specific_information <- apply(cbind(specific_information_X, specific_information_Y), 1, min)
 
   return(sum(p_Z * minimum_specific_information, na.rm = TRUE))
 }
@@ -259,73 +261,73 @@ Redundancy = function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10"
 #'
 #' # corresponding part mutual information
 #' PMI.plugin(probs_xyz)
-PMI.plugin = function(probs, unit = c("log", "log2", "log10")){
+PMI.plugin <- function(probs, unit = c("log", "log2", "log10")){
 
-  unit = match.arg(unit)
+  unit <- match.arg(unit)
 
-  p_xyz = probs
-  p_x   = rowSums(p_xyz, dims = 1L)
-  p_y   = apply(p_xyz[,,], 2, sum)
-  p_z   = colSums(p_xyz, dims = 2L)
-  p_xz  = apply(p_xyz, c(1,3), sum)
-  p_yz  = colSums(p_xyz, dims = 1L)
+  p_xyz <- probs
+  p_x <- rowSums(p_xyz, dims = 1L)
+  p_y <- colSums(rowSums(p_xyz, dims = 2L), dims = 1L) # p_y <- apply(p_xyz, 2, sum)
+  p_z <- colSums(p_xyz, dims = 2L)
+  p_xz <- rowSums(aperm(p_xyz, c(1,3,2)), dims = 2L) # p_xz <- apply(p_xyz, c(1,3), sum)
+  p_yz <- colSums(p_xyz, dims = 1L)
 
   ##--- p(x|z,y) = px_yz = p_xyz / p_yz ---##
-  fun_x_yz = function(x, tmp){
+  fun_x_yz <- function(x, tmp){
     x/tmp
   }
-  p_x_yz = apply(p_xyz, 1, fun_x_yz, p_yz)
-  p_x_yz = array(t(p_x_yz), dim = dim(p_xyz))
-  p_x_yz[is.na(p_x_yz)] = 0
+  p_x_yz <- apply(p_xyz, 1, fun_x_yz, p_yz)
+  p_x_yz <- array(t(p_x_yz), dim = dim(p_xyz))
+  p_x_yz[is.na(p_x_yz)] <- 0
 
   ##--- p*(x|z) = y p(x|zy)p(y) that is p_x_z = y p_x_zy * p_y ---##
-  fun_x_yz_y = function(x, tmp, c){
+  fun_x_yz_y <- function(x, tmp, c){
     x*tmp[c]
   }
-  p_x_z = apply(p_x_yz, 1, fun_x_yz_y, p_y, 1:length(p_y))
-  p_x_z = array(t(p_x_z), dim = dim(p_xyz))
-  p_x_z = array( apply(p_x_z, 3, rowSums), dim = c(dim(p_xyz)[1],1,dim(p_xyz)[3]))
+  p_x_z <- apply(p_x_yz, 1, fun_x_yz_y, p_y, seq_len(length(p_y)))
+  p_x_z <- array(t(p_x_z), dim = dim(p_xyz))
+  p_x_z <- array(apply(p_x_z, 3, rowSums), dim = c(dim(p_xyz)[1],1,dim(p_xyz)[3]))
 
   ##--- p(y|x,z) = py_xz = p_xyz / p_xz
-  fun_y_xz = function(x, tmp){
+  fun_y_xz <- function(x, tmp){
     x/tmp
   }
-  p_y_xz = apply(p_xyz, 2, fun_y_xz, p_xz)
-  p_y_xz = array(t(p_y_xz), dim = dim(p_xyz))
-  p_y_xz = array(apply(p_y_xz, 3, t), dim = dim(p_xyz))
-  p_y_xz[is.na(p_y_xz)] = 0
+  p_y_xz <- apply(p_xyz, 2, fun_y_xz, p_xz)
+  p_y_xz <- array(t(p_y_xz), dim = dim(p_xyz))
+  p_y_xz <- array(apply(p_y_xz, 3, t), dim = dim(p_xyz))
+  p_y_xz[is.na(p_y_xz)] <- 0
 
   ##--- p*(y|z) = x p(x|zx)p(x) that is p_x_z = x p_y_xz * p_x ---##
-  fun_x_yz_y = function(x, tmp, c){
+  fun_x_yz_y <- function(x, tmp, c){
     x*tmp[c]
   }
-  p_y_z = apply(p_y_xz, 2, fun_x_yz_y, p_x, 1:length(p_x))
-  p_y_z = array(t(p_y_z), dim = dim(p_xyz))
-  p_y_z = array(apply(p_y_z, 3, t), dim = dim(p_xyz))
-  p_y_z = array( colSums(p_y_z), dim = c(1, dim(p_xyz)[1], dim(p_xyz)[1]))
+  p_y_z <- apply(p_y_xz, 2, fun_x_yz_y, p_x, seq_len(length(p_x)))
+  p_y_z <- array(t(p_y_z), dim = dim(p_xyz))
+  p_y_z <- array(apply(p_y_z, 3, t), dim = dim(p_xyz))
+  p_y_z <- array(colSums(p_y_z), dim = c(1, dim(p_xyz)[1], dim(p_xyz)[1]))
 
   ##--- p(x,y|z) = p(x,y,z)/p(z) that is p_xy_z = p_xyz/p_z ---##
-  fun_xy_z = function(x, tmp, c){
+  fun_xy_z <- function(x, tmp, c){
     t(x)/tmp[c]
   }
-  p_xy_z = apply(p_xyz, 1, fun_xy_z, p_z, 1:length(p_z))
-  p_xy_z = array(t(p_xy_z), dim = dim(p_xyz))
-  p_xy_z = array(t(apply(p_xy_z, 1, t)), dim = dim(p_xyz))
+  p_xy_z <- apply(p_xyz, 1, fun_xy_z, p_z, seq_len(length(p_z)))
+  p_xy_z <- array(t(p_xy_z), dim = dim(p_xyz))
+  p_xy_z <- array(t(apply(p_xy_z, 1, t)), dim = dim(p_xyz))
 
   ##--- p*(x|z)*p*(y|z) ----##
-  tmp = as.matrix(p_x_z) %*% t(as.matrix(p_y_z))
+  tmp <- as.matrix(p_x_z) %*% t(as.matrix(p_y_z))
 
-  p_x_z_y_z = array(c(tmp[1:length(p_x_z[1,,]), 1:length(p_y_z[,,1])],
-                      tmp[(1+length(p_x_z[1,,])):(2*length(p_x_z[1,,])), (1+length(p_y_z[,,1])):(2*length(p_y_z[,,1]))],
-                      tmp[(1+2*length(p_x_z[1,,])):(3*length(p_x_z[1,,])), (1+2*length(p_y_z[,,1])):(3*length(p_y_z[,,1]))]), dim = dim(p_xyz))
+  p_x_z_y_z <- array(c(tmp[seq_len(length(p_x_z[1,,])), seq_len(length(p_y_z[,,1]))],
+                       tmp[seq((1+length(p_x_z[1,,])), (2*length(p_x_z[1,,]))), seq((1+length(p_y_z[,,1])), (2*length(p_y_z[,,1])))],
+                       tmp[seq((1+2*length(p_x_z[1,,])), (3*length(p_x_z[1,,]))), seq((1+2*length(p_y_z[,,1])),(3*length(p_y_z[,,1])))]), dim = dim(p_xyz))
 
   ##--- p(x,y|z)/(p*(x|z)*p*(y|z)) ---##
-  tmp = log(p_xy_z/p_x_z_y_z)
-  if (unit == "log2")   tmp = log(p_xy_z/p_x_z_y_z, 2)  # change from log to log2 scale
-  if (unit == "log10")  tmp = log(p_xy_z/p_x_z_y_z, 10) # change from log to log10 scale
-  tmp[is.infinite(tmp)] = 0
+  tmp <- log(p_xy_z/p_x_z_y_z)
+  if (unit == "log2")   tmp <- log(p_xy_z/p_x_z_y_z, 2)  # change from log to log2 scale
+  if (unit == "log10")  tmp <- log(p_xy_z/p_x_z_y_z, 10) # change from log to log10 scale
+  tmp[is.infinite(tmp)] <- 0
 
-  PMI = sum(p_xyz * tmp, na.rm = TRUE)
+  PMI <- sum(p_xyz * tmp, na.rm = TRUE)
 
   return(PMI)
 }

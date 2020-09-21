@@ -16,13 +16,13 @@
 #'
 #' # corresponding count table estimated by "uniform width" algorithm
 #' discretize1d.uniform_width(x)
-discretize1d.uniform_width = function(x)
+discretize1d.uniform_width <- function(x)
 {
-  numBins = floor( sqrt(length(x)) )
-  r=range(x)
+  numBins <- floor(sqrt(length(x)))
+  r <- range(x)
 
-  b = seq(from=r[1], to=r[2], length.out=numBins+1 )
-  X = table( cut(x, breaks=b , include.lowest=TRUE) )
+  b <- seq(from = r[1], to = r[2], length.out = numBins + 1)
+  X <- table(cut(x, breaks = b , include.lowest = TRUE))
 
   return(X)
 }
@@ -48,18 +48,18 @@ discretize1d.uniform_width = function(x)
 #'
 #' # corresponding joint count table estimated by "uniform width" algorithm
 #' discretize2d.uniform_width(x,y)
-discretize2d.uniform_width = function(x, y)
+discretize2d.uniform_width <- function(x, y)
 {
-  numBins1 = floor( sqrt(length(x)) )
-  numBins2 = floor( sqrt(length(y)) )
-  r1 = range(x)
-  r2 = range(y)
+  numBins1 <- floor(sqrt(length(x)))
+  numBins2 <- floor(sqrt(length(y)))
+  r1 <- range(x)
+  r2 <- range(y)
 
-  b1 = seq(from=r1[1], to=r1[2], length.out=numBins1+1 )
-  b2 = seq(from=r2[1], to=r2[2], length.out=numBins2+1 )
+  b1 <- seq(from = r1[1], to = r1[2], length.out = numBins1 + 1)
+  b2 <- seq(from = r2[1], to = r2[2], length.out = numBins2 + 1)
 
-  XY = table( cut(x, breaks=b1, include.lowest=TRUE ),
-              cut(y, breaks=b2, include.lowest=TRUE ) )
+  XY <- table(cut(x, breaks = b1, include.lowest = TRUE),
+              cut(y, breaks = b2, include.lowest = TRUE))
 
   return(XY)
 }
@@ -87,22 +87,22 @@ discretize2d.uniform_width = function(x, y)
 #'
 #' # corresponding joint count table estimated by "uniform width" algorithm
 #' discretize3d.uniform_width(x,y,z)
-discretize3d.uniform_width = function(x, y, z)
+discretize3d.uniform_width <- function(x, y, z)
 {
-  numBins1 = floor( sqrt(length(x)) )
-  numBins2 = floor( sqrt(length(y)) )
-  numBins3 = floor( sqrt(length(z)) )
-  r1 = range(x)
-  r2 = range(y)
-  r3 = range(z)
+  numBins1 <- floor(sqrt(length(x)))
+  numBins2 <- floor(sqrt(length(y)))
+  numBins3 <- floor(sqrt(length(z)))
+  r1 <- range(x)
+  r2 <- range(y)
+  r3 <- range(z)
 
-  b1 = seq(from=r1[1], to=r1[2], length.out=numBins1+1 )
-  b2 = seq(from=r2[1], to=r2[2], length.out=numBins2+1 )
-  b3 = seq(from=r3[1], to=r3[2], length.out=numBins3+1 )
+  b1 <- seq(from = r1[1], to = r1[2], length.out = numBins1 + 1)
+  b2 <- seq(from = r2[1], to = r2[2], length.out = numBins2 + 1)
+  b3 <- seq(from = r3[1], to = r3[2], length.out = numBins3 + 1)
 
-  xyz = table( cut(x, breaks=b1, include.lowest=TRUE ),
-               cut(y, breaks=b2, include.lowest=TRUE ),
-               cut(z, breaks=b3, include.lowest=TRUE ))
+  xyz <- table(cut(x, breaks = b1, include.lowest = TRUE),
+               cut(y, breaks = b2, include.lowest = TRUE),
+               cut(z, breaks = b3, include.lowest = TRUE))
   return(xyz)
 }
 
@@ -125,9 +125,9 @@ discretize3d.uniform_width = function(x, y, z)
 #'
 #' # corresponding count table estimated by "uniform frequency" algorithm
 #' discretize1d.uniform_frequency(x)
-discretize1d.uniform_frequency = function(x)
+discretize1d.uniform_frequency <- function(x)
 {
-  X = table( uniform_frequency(x) )
+  X <- table(uniform_frequency(x))
 
   return(X)
 }
@@ -153,10 +153,10 @@ discretize1d.uniform_frequency = function(x)
 #'
 #' # corresponding joint count table estimated by "uniform frequency" algorithm
 #' discretize2d.uniform_frequency(x,y)
-discretize2d.uniform_frequency = function(x, y)
+discretize2d.uniform_frequency <- function(x, y)
 {
-  XY = table( uniform_frequency(x),
-              uniform_frequency(y) )
+  XY <- table(uniform_frequency(x),
+              uniform_frequency(y))
 
   return(XY)
 }
@@ -183,22 +183,24 @@ discretize2d.uniform_frequency = function(x, y)
 #'
 #' # corresponding joint count table estimated by "uniform frequency" algorithm
 #' discretize3d.uniform_frequency(x,y,z)
-discretize3d.uniform_frequency = function(x, y, z)
+discretize3d.uniform_frequency <- function(x, y, z)
 {
-  xyz = table( uniform_frequency(x),
+  xyz <- table(uniform_frequency(x),
                uniform_frequency(y),
-               uniform_frequency(z) )
+               uniform_frequency(z))
   return(xyz)
 }
 
 
 ##--- the function of uniform frequency ---##
-uniform_frequency = function(data){
-  numBins = floor(sqrt(length(data)))
-  nrepl = floor(length(data)/numBins)
-  nplus = sample(1:numBins, length(data) - nrepl * numBins)
-  nrep = rep(nrepl, numBins)
-  nrep[nplus] = nrepl + 1
-  data[order(data)] = rep(seq.int(numBins), nrep)
+uniform_frequency <- function(data){
+
+  numBins <- floor(sqrt(length(data)))
+  nrepl <- floor(length(data)/numBins)
+  nplus <- sample(seq_len(numBins), length(data) - nrepl * numBins)
+  nrep <- rep(nrepl, numBins)
+  nrep[nplus] <- nrepl + 1
+  data[order(data)] <- rep(seq.int(numBins), nrep)
+
   return(data)
 }
