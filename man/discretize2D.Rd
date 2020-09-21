@@ -4,14 +4,14 @@
 \alias{discretize2D}
 \title{Discretize 2-dimensional continuous data into bins}
 \usage{
-discretize2D(x, y, model = c("uniform_width", "uniform_frequency"))
+discretize2D(x, y, algorithm = c("uniform_width", "uniform_frequency"))
 }
 \arguments{
 \item{x}{a numeric vector of the random variable x.}
 
 \item{y}{a numeric vector of the random variable y.}
 
-\item{model}{two discretization algorithms are available, "uniform_width" is the default.}
+\item{algorithm}{two discretization algorithms are available, "uniform_width" is the default.}
 }
 \value{
 discretize2D returns a 2-dimensional count table.

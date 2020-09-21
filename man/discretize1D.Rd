@@ -4,12 +4,12 @@
 \alias{discretize1D}
 \title{Discretize one-dimensional continuous data into bins}
 \usage{
-discretize1D(x, model = c("uniform_width", "uniform_frequency"))
+discretize1D(x, algorithm = c("uniform_width", "uniform_frequency"))
 }
 \arguments{
 \item{x}{a numeric vector of the random variable x.}
 
-\item{model}{two discretization algorithms are available, "uniform_width" is the default.}
+\item{algorithm}{two discretization algorithms are available, "uniform_width" is the default.}
 }
 \value{
 discretize1D returns a one-dimensional count table.

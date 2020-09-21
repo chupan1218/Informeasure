@@ -8,7 +8,7 @@
 #' Uniform frequency-based method ("uniform_frequency") divides the continuous data into N bins with (approximate) equal count number.
 #' By default in both methods, the number of bins N is initialized into a round-off value according to the square root of the data size.
 #' @param x a numeric vector of the random variable x.
-#' @param model two discretization algorithms are available, "uniform_width" is the default.
+#' @param algorithm two discretization algorithms are available, "uniform_width" is the default.
 #'
 #' @return discretize1D returns a one-dimensional count table.
 #' @export
@@ -26,14 +26,14 @@
 #'
 #' # corresponding count table estimated by "uniform frequency" algorithm
 #' discretize1D(x, "uniform_frequency")
-discretize1D <- function(x, model = c("uniform_width", "uniform_frequency")){
+discretize1D <- function(x, algorithm = c("uniform_width", "uniform_frequency")){
 
-  model <- match.arg(model)
+  algorithm <- match.arg(algorithm)
 
-  if(model == "uniform_width")
+  if(algorithm == "uniform_width")
     return(discretize1d.uniform_width(x))
 
-  if(model == "uniform_frequency")
+  if(algorithm == "uniform_frequency")
     return(discretize1d.uniform_frequency(x))
 }
 
@@ -49,7 +49,7 @@ discretize1D <- function(x, model = c("uniform_width", "uniform_frequency")){
 #' By default in both methods, the number of bins N is initialized into a round-off value according to the square root of the data size.
 #' @param x a numeric vector of the random variable x.
 #' @param y a numeric vector of the random variable y.
-#' @param model two discretization algorithms are available, "uniform_width" is the default.
+#' @param algorithm two discretization algorithms are available, "uniform_width" is the default.
 #'
 #' @return discretize2D returns a 2-dimensional count table.
 #' @export
@@ -68,14 +68,14 @@ discretize1D <- function(x, model = c("uniform_width", "uniform_frequency")){
 #'
 #' # corresponding count table estimated by "uniform frequency" algorithm
 #' discretize2D(x,y, "uniform_frequency")
-discretize2D <- function(x, y, model = c("uniform_width", "uniform_frequency")){
+discretize2D <- function(x, y, algorithm = c("uniform_width", "uniform_frequency")){
 
-  model <- match.arg(model)
+  algorithm <- match.arg(algorithm)
 
-  if(model == "uniform_width")
+  if(algorithm == "uniform_width")
     return(discretize2d.uniform_width(x,y))
 
-  if(model == "uniform_frequency")
+  if(algorithm == "uniform_frequency")
     return(discretize2d.uniform_frequency(x,y))
 }
 
@@ -92,7 +92,7 @@ discretize2D <- function(x, y, model = c("uniform_width", "uniform_frequency")){
 #' @param x a numeric vector of the random variable x.
 #' @param y a numeric vector of the random variable y.
 #' @param z a numeric vector of the random variable z.
-#' @param model two discretization algorithms are available, "uniform_width" is the default.
+#' @param algorithm two discretization algorithms are available, "uniform_width" is the default.
 #'
 #' @return discretize3D returns a 3-dimensional count table.
 #' @export
@@ -112,14 +112,14 @@ discretize2D <- function(x, y, model = c("uniform_width", "uniform_frequency")){
 #'
 #' # corresponding count table estimated by "uniform frequency" algorithm
 #' discretize3D(x,y,z, "uniform_frequency")
-discretize3D <- function(x, y, z, model = c("uniform_width", "uniform_frequency")){
+discretize3D <- function(x, y, z, algorithm = c("uniform_width", "uniform_frequency")){
 
-  model <- match.arg(model)
+  algorithm <- match.arg(algorithm)
 
-  if(model == "uniform_width")
+  if(algorithm == "uniform_width")
     return(discretize3d.uniform_width(x,y,z))
 
-  if(model == "uniform_frequency")
+  if(algorithm == "uniform_frequency")
     return(discretize3d.uniform_frequency(x,y,z))
 }
 
