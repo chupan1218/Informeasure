@@ -1,7 +1,7 @@
 Package: Informeasure
 Type: Package
 Title: R implementation of Information measures
-Version: 0.99.6
+Version: 0.99.7
 Authors@R: c(person(given = "Chu", family = "Pan", role = c("aut", "cre"), email = "chu.pan@hnu.edu.cn"))
 Description: This package compiles most information measures currently available: mutual information, conditional mutual information, interaction information, 
     partial information decomposition and part mutual information. Using gene expression profile data, all these estimators can be employed to quantify nonlinear 
@@ -13,8 +13,8 @@ Encoding: UTF-8
 LazyData: true
 biocViews: GeneExpression, NetworkInference, Network
 NeedsCompilation: no
-RoxygenNote: 7.1.1
-Imports: entropy, matrixStats
+RoxygenNote: 7.1.0
+Imports: entropy, matrixStats, SummarizedExperiment
 Suggests: 
     knitr,
     rmarkdown,

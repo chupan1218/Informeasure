@@ -174,7 +174,7 @@ PID.plugin <- function(probs, unit = c("log", "log2", "log10")){
 
   p_X <- rowSums(probs, dims = 1L)
   p_XZ <- rowSums(aperm(probs, c(1,3,2)), dims = 2L) # p_XZ <- apply(probs, c(1,3), sum)
-  p_Y <- colSums(rowSums(probs, dims = 2L), dims = 1L) # p_Y <- apply(probs[,,], 2, sum)
+  p_Y <- colSums(rowSums(probs, dims = 2L), dims = 1L) # p_Y <- apply(probs, 2, sum)
   p_YZ <- colSums(probs, dims = 1L)
   p_Z <- colSums(probs, dims = 2L)
 
@@ -182,27 +182,28 @@ PID.plugin <- function(probs, unit = c("log", "log2", "log10")){
   I_YZ <- MI.plugin(p_YZ, unit)
 
   Redundancy <- Redundancy(p_XZ, p_YZ, p_X, p_Y, p_Z, unit)
+  #cat("Redundancy: ", Redundancy, "\n")
 
-  Unique_Y <- I_XZ - Redundancy
-  Unique_Y <- ifelse(Unique_Y>0, Unique_Y, 0)
+  Unique_X <- I_XZ - Redundancy
+  Unique_X <- ifelse(Unique_X > 0, Unique_X, 0)
 
-  Unique_X <- I_YZ - Redundancy
-  Unique_X <- ifelse(Unique_X>0, Unique_X, 0)
+  Unique_Y <- I_YZ - Redundancy
+  Unique_Y <- ifelse(Unique_Y > 0, Unique_Y, 0)
 
   Synergy <- II.plugin(probs, unit) + Redundancy
-  Synergy <- ifelse(Synergy>0, Synergy, 0)
+  Synergy <- ifelse(Synergy > 0, Synergy, 0)
 
-  PID <- Synergy + Unique_Y + Unique_X + Redundancy
+  PID <- Synergy + Unique_X + Unique_Y + Redundancy
 
-  return(data.frame(Synergy = Synergy,Unique_X = Unique_X, Unique_Y = Unique_Y,
+  return(data.frame(Synergy = Synergy, Unique_X = Unique_X, Unique_Y = Unique_Y,
                     Redundancy = Redundancy, PID = PID))
 }
 
-specific_information <- function(p_iz, p_i, p_z, unit = c("log", "log2", "log10")){
+specific.information <- function(p_iz, p_i, p_z, unit = c("log", "log2", "log10")){
 
   unit <- match.arg(unit)
 
-  p_i_z <- t(t(p_iz) /p_z)  ##p(i|z)
+  p_i_z <- t(t(p_iz)/p_z)  ##p(i|z)
 
   p_z_i <- t(p_iz/p_i) ##p(z|i)
 
@@ -211,23 +212,23 @@ specific_information <- function(p_iz, p_i, p_z, unit = c("log", "log2", "log10"
   if (unit == "log2")  tmp <- t((log(1/p_z, 2))  - (log(1/p_z_i, 2))) * p_i_z  # change from log to log2 scale
   if (unit == "log10") tmp <- t((log(1/p_z, 10)) - (log(1/p_z_i, 10))) * p_i_z # change from log to log10 scale
 
-  specific_information <- colSums(tmp, na.rm = TRUE)
+  specific.information <- colSums(tmp, na.rm = TRUE)
 
-  return(specific_information)
+  return(specific.information)
 }
 
 Redundancy <- function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10")){
 
   unit <- match.arg(unit)
 
-  specific_information_X <- specific_information(p_XZ, p_X, p_Z, unit)
-  specific_information_Y <- specific_information(p_YZ, p_Y, p_Z, unit)
-  #cat("specific_information_X: ",specific_information_X,
-  #    "specific_information_y: ",specific_information_y,"\n")
+  specific.information.X <- specific.information(p_XZ, p_X, p_Z, unit)
+  specific.information.Y <- specific.information(p_YZ, p_Y, p_Z, unit)
+  #cat("specific.information.X: ",specific.information.X,
+  #    "specific.information.y: ",specific.information.Y,"\n")
 
-  minimum_specific_information <- apply(cbind(specific_information_X, specific_information_Y), 1, min)
+  minimum.specific.information <- apply(cbind(specific.information.X, specific.information.Y), 1, min)
 
-  return(sum(p_Z * minimum_specific_information, na.rm = TRUE))
+  return(sum(p_Z * minimum.specific.information, na.rm = TRUE))
 }
 
 
@@ -266,13 +267,14 @@ PMI.plugin <- function(probs, unit = c("log", "log2", "log10")){
   unit <- match.arg(unit)
 
   p_xyz <- probs
+  p_yxz <- aperm(p_xyz, c(2,1,3))
   p_x <- rowSums(p_xyz, dims = 1L)
   p_y <- colSums(rowSums(p_xyz, dims = 2L), dims = 1L) # p_y <- apply(p_xyz, 2, sum)
   p_z <- colSums(p_xyz, dims = 2L)
   p_xz <- rowSums(aperm(p_xyz, c(1,3,2)), dims = 2L) # p_xz <- apply(p_xyz, c(1,3), sum)
   p_yz <- colSums(p_xyz, dims = 1L)
 
-  ##--- p(x|z,y) = px_yz = p_xyz / p_yz ---##
+  ##--- p(x|y,z) = px_yz = p_xyz/p_yz ---##
   fun_x_yz <- function(x, tmp){
     x/tmp
   }
@@ -280,7 +282,7 @@ PMI.plugin <- function(probs, unit = c("log", "log2", "log10")){
   p_x_yz <- array(t(p_x_yz), dim = dim(p_xyz))
   p_x_yz[is.na(p_x_yz)] <- 0
 
-  ##--- p*(x|z) = y p(x|zy)p(y) that is p_x_z = y p_x_zy * p_y ---##
+  ##--- p*(x|z) = sum_y p(x|yz)p(y) ---##
   fun_x_yz_y <- function(x, tmp, c){
     x*tmp[c]
   }
@@ -288,25 +290,23 @@ PMI.plugin <- function(probs, unit = c("log", "log2", "log10")){
   p_x_z <- array(t(p_x_z), dim = dim(p_xyz))
   p_x_z <- array(apply(p_x_z, 3, rowSums), dim = c(dim(p_xyz)[1],1,dim(p_xyz)[3]))
 
-  ##--- p(y|x,z) = py_xz = p_xyz / p_xz
+  ##--- p(y|x,z) = py_xz = p_yxz/p_xz
   fun_y_xz <- function(x, tmp){
     x/tmp
   }
-  p_y_xz <- apply(p_xyz, 2, fun_y_xz, p_xz)
-  p_y_xz <- array(t(p_y_xz), dim = dim(p_xyz))
-  p_y_xz <- array(apply(p_y_xz, 3, t), dim = dim(p_xyz))
+  p_y_xz <- apply(p_yxz, 1, fun_y_xz, p_xz)
+  p_y_xz <- array(t(p_y_xz), dim = dim(p_yxz))
   p_y_xz[is.na(p_y_xz)] <- 0
 
-  ##--- p*(y|z) = x p(x|zx)p(x) that is p_x_z = x p_y_xz * p_x ---##
-  fun_x_yz_y <- function(x, tmp, c){
+  ##--- p*(y|z) = sum_x p(y|xz)p(x) ---##
+  fun_y_xz_x <- function(x, tmp, c){
     x*tmp[c]
   }
-  p_y_z <- apply(p_y_xz, 2, fun_x_yz_y, p_x, seq_len(length(p_x)))
-  p_y_z <- array(t(p_y_z), dim = dim(p_xyz))
-  p_y_z <- array(apply(p_y_z, 3, t), dim = dim(p_xyz))
-  p_y_z <- array(colSums(p_y_z), dim = c(1, dim(p_xyz)[1], dim(p_xyz)[1]))
+  p_y_z <- apply(p_y_xz, 1, fun_y_xz_x, p_x, seq_len(length(p_x)))
+  p_y_z <- array(t(p_y_z), dim = dim(p_yxz))
+  p_y_z <- array(apply(p_y_z, 3, rowSums), dim = c(dim(p_yxz)[1],1,dim(p_yxz)[3]))
 
-  ##--- p(x,y|z) = p(x,y,z)/p(z) that is p_xy_z = p_xyz/p_z ---##
+  ##--- p(x,y|z) = p(x,y,z)/p(z) ---##
   fun_xy_z <- function(x, tmp, c){
     t(x)/tmp[c]
   }
