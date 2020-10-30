@@ -1,7 +1,7 @@
 Package: Informeasure
 Type: Package
 Title: R implementation of Information measures
-Version: 1.2.0
+Version: 1.1.1
 Authors@R: c(person(given = "Chu", family = "Pan", role = c("aut", "cre"), email = "chu.pan@hnu.edu.cn"))
 Description: This package compiles most of the information measures currently available: mutual information, conditional mutual information, 
     interaction information, partial information decomposition and part mutual information. All of these estimators can be used to quantify nonlinear 

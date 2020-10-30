@@ -215,8 +215,6 @@ Redundancy <- function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10
 
   specific.information.X <- specific.information(p_XZ, p_X, p_Z, unit)
   specific.information.Y <- specific.information(p_YZ, p_Y, p_Z, unit)
-  #cat("specific.information.X: ",specific.information.X,
-  #    "specific.information.y: ",specific.information.Y,"\n")
 
   minimum.specific.information <- apply(cbind(specific.information.X, specific.information.Y), 1, min)
 
