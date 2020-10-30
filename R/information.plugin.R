@@ -9,8 +9,6 @@
 #' @export
 #' @import entropy
 #' @importFrom entropy entropy.plugin KL.plugin
-#' @import matrixStats
-#' @importFrom matrixStats rowSums2 colSums2
 #'
 #' @examples
 #' # two numeric vectors corresponding to two continuous random variables
@@ -30,9 +28,9 @@ MI.plugin <- function(probs, unit = c("log", "log2", "log10")){
 
   unit <- match.arg(unit)
 
-  MI <- entropy.plugin(rowSums2(probs, dim. = dim(probs)),  unit = unit) +
-        entropy.plugin(colSums2(probs, dim. = dim(probs)),  unit = unit) -
-        entropy.plugin(probs,           unit = unit)
+  MI <- entropy.plugin(rowSums(probs), unit = unit) +
+        entropy.plugin(colSums(probs), unit = unit) -
+        entropy.plugin(probs, unit = unit)
 
   #probs.x <- rowSums(probs) # marginal probability
   #probs.y <- colSums(probs)
