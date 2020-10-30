@@ -8,7 +8,7 @@
 #' @return MI.plugin returns the mutual information.
 #' @export
 #' @import entropy
-#' @importFrom entropy entropy.plugin
+#' @importFrom entropy entropy.plugin entropy.KL.plugin
 #'
 #' @examples
 #' # two numeric vectors corresponding to two continuous random variables
