@@ -282,7 +282,7 @@ PMI.measure(XYZ)
 This package provides implementations of five currently popular information measures. The base installation of this package allows users to approach these information measures to infer bivariate even multivariate biological regulatory networks. But please be noted that the provided package is not only limited to bioinformatics applications. Optionally other research fields can also employ this package to generally evaluate information relations between variables.
 
 # Acknowledgement
-I would like to thank Ms. Song Jing for her careful proofreading of the manuscript, Mr. Xianghua Wang for his helpful discussions on the PMI algorithm, and Dr. Junpeng Zhang, Mr. Nitesh Turaga and Mr. Martin Morgan for their informative suggestions on writing the R package. I also would like to thank my family for their persistent support during my most difficult times in 2020!
+I would like to thank Ms. Song Jing for her careful proofreading of the manuscript, Mr. Xianghua Wang for his helpful discussions on the PMI algorithm, and Dr. Junpeng Zhang, Mr. Nitesh Turaga and Mr. Martin Morgan for their informative suggestions on writing the R package. I also like to thank my family for their persistent support during my most difficult times in 2020!
 
 
 # References

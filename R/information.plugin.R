@@ -8,7 +8,7 @@
 #' @return MI.plugin returns the mutual information.
 #' @export
 #' @import entropy
-#' @importFrom entropy entropy.plugin KL.plugin
+#' @importFrom entropy entropy.plugin
 #'
 #' @examples
 #' # two numeric vectors corresponding to two continuous random variables
@@ -31,12 +31,6 @@ MI.plugin <- function(probs, unit = c("log", "log2", "log10")){
   MI <- entropy.plugin(rowSums(probs), unit = unit) +
         entropy.plugin(colSums(probs), unit = unit) -
         entropy.plugin(probs, unit = unit)
-
-  #probs.x <- rowSums(probs) # marginal probability
-  #probs.y <- colSums(probs)
-  #probs.null <- probs.x %o% probs.y # independence null model
-
-  #MI <- KL.plugin(probs, probs.null, unit = unit)
 
   return(MI)
 }
