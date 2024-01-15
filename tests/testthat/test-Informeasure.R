@@ -1,4 +1,4 @@
-testthat::test_package("Informeasure")
+#testthat::test_package("Informeasure")
 
 load(system.file("extdata/tcga.brca.testdata.Rdata", package="Informeasure"))
 
