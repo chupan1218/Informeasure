@@ -8,7 +8,7 @@
 #' @return MI.plugin returns the mutual information.
 #' @export
 #' @import entropy
-#' @importFrom entropy entropy.plugin entropy.KL.plugin
+#' @importFrom entropy entropy.plugin KL.plugin
 #'
 #' @examples
 #' # two numeric vectors corresponding to two continuous random variables
@@ -31,6 +31,12 @@ MI.plugin <- function(probs, unit = c("log", "log2", "log10")){
   MI <- entropy.plugin(rowSums(probs), unit = unit) +
         entropy.plugin(colSums(probs), unit = unit) -
         entropy.plugin(probs, unit = unit)
+
+  #probs.x <- rowSums(probs) # marginal probability
+  #probs.y <- colSums(probs)
+  #probs.null <- probs.x %o% probs.y # independence null model
+
+  #MI <- KL.plugin(probs, probs.null, unit = unit)
 
   return(MI)
 }
@@ -215,6 +221,8 @@ Redundancy <- function(p_XZ, p_YZ, p_X, p_Y, p_Z, unit = c("log", "log2", "log10
 
   specific.information.X <- specific.information(p_XZ, p_X, p_Z, unit)
   specific.information.Y <- specific.information(p_YZ, p_Y, p_Z, unit)
+  #cat("specific.information.X: ",specific.information.X,
+  #    "specific.information.y: ",specific.information.Y,"\n")
 
   minimum.specific.information <- apply(cbind(specific.information.X, specific.information.Y), 1, min)
 
